@@ -37,6 +37,13 @@
             set;
         }
 
+        [XmlAttribute]
+        public string Path
+        {
+            get;
+            set;
+        }
+
         public void Apply(SimObject simObject)
         {
             SimProperty simProperty = simObject.Properties.SingleOrDefault(p => p.Name == this.Target);

@@ -13,6 +13,9 @@ public class UnitsManager : Singleton<UnitsManager>
 	public delegate void RemovePeonCallback(Peon p);
 	public static event RemovePeonCallback OnRemovePeon;
 
+    public delegate void RemoveGuardCallback(Guard g);
+    public static event RemoveGuardCallback OnRemoveGuard;
+
 	void Awake()
 	{
 		player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
@@ -35,4 +38,13 @@ public class UnitsManager : Singleton<UnitsManager>
 		OnRemovePeon(p);
 		peons.Remove(p);
 	}
+
+    public void RemoveGuard(Guard g)
+    {
+        guards.Remove(g);
+        if (OnRemoveGuard != null)
+        {
+            OnRemoveGuard(g);
+        }
+    }
 }
