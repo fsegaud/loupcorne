@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfSimObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+	<SimObject Name="King" Class="Player">
+	  <SimProperty Name="Stamina" BaseValue="10" />
+	  <SimProperty Name="Strength" BaseValue="10" />
+	</SimObject>
+
+</ArrayOfSimObject>

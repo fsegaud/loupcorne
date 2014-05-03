@@ -5,7 +5,21 @@
 
     public class Database
     {
+        private static Database instance;
+
         private readonly Dictionary<Type, IDatatable> datatables = new Dictionary<Type, IDatatable>();
+
+        public static Database Instance
+        {
+            get
+            {
+                return Database.instance ?? (Database.instance = new Database());
+            }
+        }
+
+        private Database()
+        {
+        }
 
         public void RegisterDatatable<T>(IDatatable datatable)
         {
