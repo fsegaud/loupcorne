@@ -12,4 +12,12 @@
 		<Gfx>Gfx/Explosion01</Gfx>
 	</SkillEffectElement>
 
+	<SkillEffectElement Name="AoeTest" Type="Aoe" Prefab="SkillEffect/Aoe">
+		<Title>Test Aoe</Title>
+		<Tags>Guard</Tags>
+		<Damage>2.5</Damage>
+		<Radius>10</Radius>
+		<Duration>5</Duration>
+	</SkillEffectElement>
+
 </ArrayOfSkillEffectElement>
