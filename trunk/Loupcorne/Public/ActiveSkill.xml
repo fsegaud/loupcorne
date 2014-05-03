@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ArrayOfActiveSkillElement xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-	<ActiveSkillElement Name="ActiveSkill01" Type="Missile">
-		<Gfx>Gfx/active_skill_01</Gfx>
-		<Sfx>Sfx/active_skill_01</Sfx>
-	</ActiveSkillElement>
-</ArrayOfActiveSkillElement>
+<ArrayOfSkillEffectElement xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+	<!-- test Missile -->
+	<SkillEffectElement Name="MissileTest" Type="Missile">
+		<Title>Test Missile</Title>
+		<Tags>Guard</Tags>
+		<Speed>5</Speed>
+		<Damage>100</Damage>
+		<DestroyOnHitSuccess>true</DestroyOnHitSuccess>
+		<DestroyOnHitFailure>true</DestroyOnHitFailure>
+		<Gfx>Gfx/Explosion01</Gfx>
+	</SkillEffectElement>
+
+</ArrayOfSkillEffectElement>

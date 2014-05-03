@@ -6,4 +6,14 @@
 	  <SimProperty Name="Strength" BaseValue="10" />
 	</SimObject>
 
+	<SimObject Name="Peon" Class="Friend">
+	  <SimProperty Name="Stamina" BaseValue="10" />
+	  <SimProperty Name="Strength" BaseValue="10" />
+	</SimObject>
+
+	<SimObject Name="Guard" Class="Foe">
+	  <SimProperty Name="Stamina" BaseValue="10" />
+	  <SimProperty Name="Strength" BaseValue="10" />
+	</SimObject>
+
 </ArrayOfSimObject>
