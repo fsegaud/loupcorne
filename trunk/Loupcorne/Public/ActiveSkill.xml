@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfActiveSkillElement xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<ActiveSkillElement Name="ActiveSkill01" Type="Missile">
+		<Gfx>Gfx/active_skill_01</Gfx>
+		<Sfx>Sfx/active_skill_01</Sfx>
+	</ActiveSkillElement>
+</ArrayOfActiveSkillElement>
