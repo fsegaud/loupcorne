@@ -8,7 +8,28 @@
         public string Name
         {
             get;
-            set;
+            protected set;
+        }
+
+        [XmlElement]
+        public string Title
+        {
+            get;
+            protected set;
+        }
+
+        [XmlElement]
+        public string Description
+        {
+            get;
+            protected set;
+        }
+
+        [XmlElement]
+        public string Tags
+        {
+            get;
+            protected set;
         }
     }
 }

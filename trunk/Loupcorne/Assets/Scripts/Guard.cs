@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿#define _STAY_IDLE
+
+using UnityEngine;
 using System.Collections;
 
 public class Guard : Entity 
@@ -31,6 +33,11 @@ public class Guard : Entity
 
 	void Update () 
 	{
+#if UNITY_EDITOR && _STAY_IDLE
+        _state = GuardStates.IDLE;
+        return;
+#endif
+
 		switch(_state)
 		{
 		case GuardStates.IDLE:
@@ -100,6 +107,12 @@ public class Guard : Entity
 	void OnDisable()
 	{
 		UnitsManager.OnRemovePeon -= OnPeonRemoved;
-
 	}
+
+    public override void Kill()
+    {
+        Debug.Log("WAAARRRGHHH");
+        _um.RemoveGuard(this);
+        Destroy(gameObject);
+    }
 }

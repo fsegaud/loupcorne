@@ -20,6 +20,7 @@ public class CustomCam : MonoBehaviour
 	void Update () 
 	{
 		Vector3 worldMousePos = camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, transform.localPosition.z));
+        //Debug.Log(worldMousePos);
 
 		Vector3 playerToMousePos = _player.position - worldMousePos;
 		playerToMousePos *=  Mathf.Clamp(coefCamPos, 0f, 0.5f); //clamp coefCamPos to avoid camera glitchs

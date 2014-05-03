@@ -78,7 +78,10 @@
             sortedModifiers.Sort((a, b) => a.Operator.CompareTo(b.Operator));
             foreach (SimModifier modifier in sortedModifiers)
             {
-                modifier.Apply(this);
+                if (this.Class == modifier.Path)
+                {
+                    modifier.Apply(this);
+                }
             }
         }
 
