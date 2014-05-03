@@ -20,7 +20,12 @@
 		<SimModifier Operator="Addition" Target="Speed" Value="2" Path="Player" />
 		<SimModifier Operator="Addition" Target="LifePoints" Value="-2" Path="Player" />
 	</SimDescriptor>
-
+	
+	<SimDescriptor Name="AlignementEvil3" Class="Alignement,Evil">
+		<SimModifier Operator="Addition" Target="Speed" Value="1" Path="Player" />
+		<SimModifier Operator="Addition" Target="LifePoints" Value="-1" Path="Player" />
+	</SimDescriptor>
+	
 	<SimDescriptor Name="AlignementGood1" Class="Alignement,Good">
 		<SimModifier Operator="Addition" Target="LifePoints" Value="1" Path="Player" />
 		<SimModifier Operator="Addition" Target="Speed" Value="-1" Path="Player" />
@@ -29,6 +34,11 @@
 	<SimDescriptor Name="AlignementGood2" Class="Alignement,Good">
 		<SimModifier Operator="Addition" Target="LifePoints" Value="2" Path="Player" />
 		<SimModifier Operator="Addition" Target="Speed" Value="-2" Path="Player" />
+	</SimDescriptor>
+	
+	<SimDescriptor Name="AlignementGood3" Class="Alignement,Good">
+		<SimModifier Operator="Addition" Target="LifePoints" Value="1" Path="Player" />
+		<SimModifier Operator="Addition" Target="Speed" Value="-1" Path="Player" />
 	</SimDescriptor>
 
 	<SimDescriptor Name="Difficulty1" Class="Alignement,Good">
