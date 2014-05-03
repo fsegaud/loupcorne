@@ -2,11 +2,34 @@
 <ArrayOfSimDescriptor xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 
 	<SimDescriptor Name="HolySword" Class="Item,Weapon">
-	 	<SimModifier Operator="Percent" Target="Strength" Value="0.5" />
+	 	<SimModifier Operator="Product" Target="Strength" Value="2" Path="Player" />
+	 	<SimModifier Operator="Addition" Target="Stamina" Value="-5" Path="Player" />
 	</SimDescriptor>
 
 	<SimDescriptor Name="HolyArmor" Class="Item,Chest">
-		<SimModifier Operator="Addition" Target="Stamina" Value="8" />
+		<SimModifier Operator="Percent" Target="Stamina" Value=".2" Path="Player" />
+		<SimModifier Operator="Percent" Target="Strength" Value=".2" Path="Player" />
+	</SimDescriptor>
+
+	<SimDescriptor Name="AlignementEvil1" Class="Alignement,Evil">
+		<SimModifier Operator="Addition" Target="Strength" Value="1" Path="Player" />
+	</SimDescriptor>
+
+	<SimDescriptor Name="AlignementEvil2" Class="Alignement,Evil">
+		<SimModifier Operator="Addition" Target="Strength" Value="2" Path="Player" />
+	</SimDescriptor>
+
+	<SimDescriptor Name="AlignementGood1" Class="Alignement,Good">
+		<SimModifier Operator="Percent" Target="Stamina" Value=".1" Path="Player" />
+	</SimDescriptor>
+
+	<SimDescriptor Name="AlignementGood1" Class="Alignement,Good">
+		<SimModifier Operator="Percent" Target="Stamina" Value=".3" Path="Player" />
+	</SimDescriptor>
+
+	<SimDescriptor Name="Difficulty1" Class="Alignement,Good">
+		<SimModifier Operator="Percent" Target="Stamina" Value=".2" Path="Foe" />
+		<SimModifier Operator="Percent" Target="Stamina" Value="-.2" Path="Friend" />
 	</SimDescriptor>
 
 </ArrayOfSimDescriptor>
