@@ -76,6 +76,7 @@ public class ThirdPersonUserControl : MonoBehaviour {
 	                  : transform.position + transform.forward * 100;
 
 	    // pass all parameters to the character control script
+		Debug.Log("Move = " + move);
 		character.Move( move, crouch, jump, lookPos );
 	}
 

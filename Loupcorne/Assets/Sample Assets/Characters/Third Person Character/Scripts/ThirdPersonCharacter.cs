@@ -100,7 +100,7 @@ public class ThirdPersonCharacter : MonoBehaviour {
 		} else {
 			HandleAirborneVelocities();
 		}
-	
+
 		UpdateAnimator (); // send input and other state parameters to the animator
 
 		// reassign velocity, since it will have been modified by the above functions.
@@ -330,6 +330,7 @@ public class ThirdPersonCharacter : MonoBehaviour {
 		// this allows us to modify the positional speed before it's applied.
 		rigidbody.rotation = animator.rootRotation;
 		if (onGround && Time.deltaTime > 0) {
+			Debug.Log ("delta position " + animator.deltaPosition);
 			Vector3 v = (animator.deltaPosition * moveSpeedMultiplier) / Time.deltaTime;
 
 			// we preserve the existing y part of the current velocity.

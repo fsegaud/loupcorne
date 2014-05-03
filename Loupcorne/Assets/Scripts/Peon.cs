@@ -6,7 +6,7 @@ public class Peon : Entity
 	enum PeonStates
 	{
 		IDLE,
-		MOVE,
+		MOVING,
 		ATTACKED
 	}
 	private PeonStates _state;
@@ -15,10 +15,14 @@ public class Peon : Entity
 	[SerializeField] private float speed;
 	private Vector3 _target;
 
+    private NavMeshAgent _navAgent;
+
 	void Start () 
 	{
 		_um = UnitsManager.Instance;
 		_state = PeonStates.IDLE;
+
+        _navAgent = GetComponent<NavMeshAgent>();
 	
 	}
 
@@ -30,13 +34,18 @@ public class Peon : Entity
 			float moveX = Random.Range(0, moveMax);
 			float moveZ = Random.Range(0, moveMax);
 			_target = new Vector3(moveX, transform.position.y, moveZ);
-			_state = PeonStates.MOVE;
+            _navAgent.SetDestination(_target);
+            _state = PeonStates.MOVING;
 			break;
-		case PeonStates.MOVE:
-			float step = speed * Time.deltaTime;
-			transform.position = Vector3.MoveTowards(transform.position, _target, step); 
+        case PeonStates.MOVING:
+            if (_navAgent.remainingDistance == 0)
+            {
+                _navAgent.Stop();
+                _state = PeonStates.IDLE;
+            }
 			break;
 		case PeonStates.ATTACKED:
+            _navAgent.Stop();
 			break;
 		}
 	
