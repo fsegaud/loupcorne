@@ -59,7 +59,7 @@
 
         public void RemoveDescriptorByClass(string @class)
         {
-            this.Descriptors.RemoveAll(d => d.Class == @class);
+            this.Descriptors.RemoveAll(d => d.Class.Split(',').ToList<string>().Contains(@class));
         }
 
         public void Refresh()
