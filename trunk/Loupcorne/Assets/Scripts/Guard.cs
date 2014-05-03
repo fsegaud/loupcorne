@@ -19,6 +19,8 @@ public class Guard : Entity
 	[SerializeField] private float attackSpeed;
 	private Entity _target;
 	private float _attackTimer;
+
+    private NavMeshAgent _navAgent;
 	
 	void Start () 
 	{
@@ -26,6 +28,8 @@ public class Guard : Entity
 		_state = GuardStates.IDLE;
 
 		_attackTimer = attackSpeed;
+
+        _navAgent = GetComponent<NavMeshAgent>();
 
 		UnitsManager.OnRemovePeon += OnPeonRemoved;
 
@@ -41,17 +45,19 @@ public class Guard : Entity
 		switch(_state)
 		{
 		case GuardStates.IDLE:
+            float distToPlayer = Vector3.Distance(transform.position, _um.player.transform.position);
+            bool targetAssigned = false;
+            //Search for a peon in visible area
 			foreach(Peon peon in _um.peons)
 			{
 				float distToPeon = Vector3.Distance(transform.position, peon.transform.position);
-				Debug.Log (distToPeon);
-				if(distToPeon <= viewDistance)
+
+                if (distToPeon <= viewDistance) //if peon is in visible area
 				{
-					float distToPlayer = Vector3.Distance(transform.position, _um.player.transform.position);
-					if(distToPlayer <= viewDistance)
+					if(distToPlayer <= viewDistance) //and player is also in visible area
 					{
 						float r = Random.Range(0f, 1f);
-						if(r > 0.5f)
+                        if (r > 0.5f) //50% to focus player
 						{
 							_target = _um.player;
 						}
@@ -60,21 +66,31 @@ public class Guard : Entity
 							_target = peon;
 						}
 					}
-					else
+					else //if player isn't in visible area then focus peon
 					{
 						_target = peon;
 
 					}
 					_state = GuardStates.CHASING;
+                    targetAssigned = true;
 					break;
 				}
 			}
+            if (targetAssigned == false) //if no target was assigned when browsing peons
+            {
+                if (distToPlayer <= viewDistance) //check if player is visible
+                {
+                    _target = _um.player;
+                    targetAssigned = true;
+                    _state = GuardStates.CHASING;
+                }
+            }
 			break;
 		case GuardStates.CHASING:
-			float step = speed * Time.deltaTime;
-			transform.position = Vector3.MoveTowards(transform.position, _target.transform.position, step);
+            _navAgent.SetDestination(_target.transform.position);
 			break;
 		case GuardStates.ATTACK:
+            _navAgent.Stop();
 			_attackTimer += Time.deltaTime;
 			if(_attackTimer >= attackSpeed)
 			{
@@ -94,6 +110,15 @@ public class Guard : Entity
 			_state = GuardStates.ATTACK;
 		}
 	}
+
+    void OnTriggerExit(Collider other)
+    {
+        Entity triggeringEntity = other.GetComponent<Entity>();
+        if (triggeringEntity is Peon || triggeringEntity is Player)
+        {
+            _state = GuardStates.CHASING;
+        }
+    }
 
 	private void OnPeonRemoved(Peon p)
 	{
