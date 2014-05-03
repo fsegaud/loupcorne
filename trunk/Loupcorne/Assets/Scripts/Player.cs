@@ -13,11 +13,8 @@ public class Player : Entity
 	
 	void Update ()
     {
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetMouseButtonDown(1))
         {
-            //Vector3 worldMousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.localPosition.z));
-            //worldMousePos = new Vector3(worldMousePos.x, 1, worldMousePos.z + 10);
-
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit[] hits = Physics.RaycastAll(ray);
             foreach (RaycastHit hit in hits)
