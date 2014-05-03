@@ -28,6 +28,12 @@ class Skill
             Vector3 spawn = new Vector3(target.x, 0f, target.z);
             o = (GameObject)GameObject.Instantiate(Resources.Load(element.Prefab), spawn, Quaternion.identity);
         }
+        else if (type == typeof(SkillEffectBuff))
+        {
+            o = (GameObject)GameObject.Instantiate(Resources.Load(element.Prefab), Vector3.zero, Quaternion.identity);
+            o.transform.parent = player.transform;
+            o.transform.localPosition = Vector3.zero;
+        }
 
         o.GetComponent<SkillEffect>().SkillEffectElement = element;
 

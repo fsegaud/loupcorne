@@ -85,4 +85,11 @@ public class SkillEffectElement : LoupCorne.Framework.DatatableElement
         get;
         protected set;
     }
+
+    [XmlElement]
+    public string BuffDescriptor
+    {
+        get;
+        set;
+    }
 }
