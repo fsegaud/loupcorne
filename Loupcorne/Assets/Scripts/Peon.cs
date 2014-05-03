@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Peon : MonoBehaviour 
+public class Peon : Entity 
 {
 	enum PeonStates
 	{
@@ -14,7 +14,7 @@ public class Peon : MonoBehaviour
 	[SerializeField] private float moveMax;
 	[SerializeField] private float speed;
 	private Vector3 _target;
-	
+
 	void Start () 
 	{
 		_um = UnitsManager.Instance;
@@ -41,12 +41,13 @@ public class Peon : MonoBehaviour
 		}
 	
 	}
-	
-	public void Kill()
+
+
+	public override void Kill()
 	{
 		Debug.Log ("WAAARRRGHHH");
-		_um.peons.Remove(this);
-		//TODO: destroy
+		_um.RemovePeon(this);
+		Destroy(gameObject);
 
 	}
 
