@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfSimDescriptor xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+	<SimDescriptor Name="HolySword" Class="WeaponItem">
+	 	<SimModifier Operator="Percent" Target="Strength" Value="0.5" />
+	</SimDescriptor>
+
+	<SimDescriptor Name="HolyArmor" Class="ChestItem">
+		<SimModifier Operator="Addition" Target="Stamina" Value="8" />
+	</SimDescriptor>
+
+</ArrayOfSimDescriptor>

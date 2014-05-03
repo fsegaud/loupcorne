@@ -8,7 +8,7 @@
         public string Name
         {
             get;
-            private set;
+            set;
         }
     }
 }
