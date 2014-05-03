@@ -6,6 +6,7 @@
 	  <SimProperty Name="Speed" BaseValue="10" />
 	  <SimProperty Name="Attack" BaseValue="10" />
 	  <SimProperty Name="Defence" BaseValue="10" />
+	  <SimProperty Name="Cooldown" BaseValue="1" />
 	</SimObject>
 
 	<SimObject Name="Peon" Class="Friend">
