@@ -39,6 +39,11 @@
             return this.Properties.SingleOrDefault(p => p.Name == name).Value;
         }
 
+        public void SetPropertyBaseValue(string name, double baseValue)
+        {
+            this.Properties.Single(p => p.Name == name).BaseValue = baseValue;
+        }
+
         public void AddDescriptor(SimDescriptor descriptor)
         {
             this.Descriptors.Add(descriptor);

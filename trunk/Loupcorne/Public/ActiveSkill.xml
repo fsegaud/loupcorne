@@ -10,6 +10,8 @@
 		<DestroyOnHitSuccess>true</DestroyOnHitSuccess>
 		<DestroyOnHitFailure>true</DestroyOnHitFailure>
 		<Gfx>Gfx/Explosion01</Gfx>
+		<Descriptor>Test_AttackBoost</Descriptor>
+		<AlignementGainOnUse>-1</AlignementGainOnUse>
 	</SkillEffectElement>
 
 	<SkillEffectElement Name="AoeTest" Type="Aoe" Prefab="SkillEffect/Aoe">
@@ -18,6 +20,7 @@
 		<Damage>2.5</Damage>
 		<Radius>10</Radius>
 		<Duration>5</Duration>
+		<AlignementGainOnUse>1</AlignementGainOnUse>
 	</SkillEffectElement>
 
 </ArrayOfSkillEffectElement>

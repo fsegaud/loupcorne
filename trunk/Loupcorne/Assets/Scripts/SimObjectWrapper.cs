@@ -1,11 +1,22 @@
-﻿
+﻿using System.Linq;
+
 public class SimObjectWrapper : UnityEngine.MonoBehaviour
 {
-    protected LoupCorne.Framework.SimObject simObject;
+    private LoupCorne.Framework.SimObject simObject;
+
+    protected void SetSimObject(LoupCorne.Framework.SimObject simObject)
+    {
+        this.simObject = simObject;
+    }
 
     public double GetPropertyValue(string name)
     {
         return this.simObject.GetPropertyValue(name);
+    }
+
+    public void SetPropertyBaseValue(string name, double baseValue)
+    {
+        this.simObject.SetPropertyBaseValue(name, baseValue);
     }
 
     public void AddDescriptor(LoupCorne.Framework.SimDescriptor descriptor)
@@ -31,5 +42,10 @@ public class SimObjectWrapper : UnityEngine.MonoBehaviour
     public void Refresh()
     {
         this.simObject.Refresh();
+    }
+
+    public string[] GetTags()
+    {
+        return this.simObject.Descriptors.Select(d => d.Name).ToArray();
     }
 }

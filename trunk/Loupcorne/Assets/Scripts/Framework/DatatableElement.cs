@@ -31,5 +31,12 @@
             get;
             protected set;
         }
+
+        [XmlElement]
+        public string Descriptor
+        {
+            get;
+            set;
+        }
     }
 }
