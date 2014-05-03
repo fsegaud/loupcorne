@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Guard : MonoBehaviour 
+public class Guard : Entity 
 {
 	enum GuardStates
 	{
@@ -13,12 +13,20 @@ public class Guard : MonoBehaviour
 	private UnitsManager _um;
 	[SerializeField] private float viewDistance;
 	[SerializeField] private float speed;
-	private Peon _target;
+	[SerializeField] private float strength;
+	[SerializeField] private float attackSpeed;
+	private Entity _target;
+	private float _attackTimer;
 	
 	void Start () 
 	{
 		_um = UnitsManager.Instance;
 		_state = GuardStates.IDLE;
+
+		_attackTimer = attackSpeed;
+
+		UnitsManager.OnRemovePeon += OnPeonRemoved;
+
 	}
 
 	void Update () 
@@ -26,14 +34,31 @@ public class Guard : MonoBehaviour
 		switch(_state)
 		{
 		case GuardStates.IDLE:
-			Debug.Log (_um.peons.Count);
+			Debug.Log("Guard is idle");
 			foreach(Peon peon in _um.peons)
 			{
-				float dist = Vector3.Distance(transform.position, peon.transform.position);
-				Debug.Log (dist);
-				if(dist <= viewDistance)
+				float distToPeon = Vector3.Distance(transform.position, peon.transform.position);
+				Debug.Log (distToPeon);
+				if(distToPeon <= viewDistance)
 				{
-					_target = peon;
+					float distToPlayer = Vector3.Distance(transform.position, _um.player.transform.position);
+					if(distToPlayer <= viewDistance)
+					{
+						float r = Random.Range(0f, 1f);
+						if(r > 0.5f)
+						{
+							_target = _um.player;
+						}
+						else
+						{
+							_target = peon;
+						}
+					}
+					else
+					{
+						_target = peon;
+
+					}
 					_state = GuardStates.CHASING;
 					break;
 				}
@@ -44,17 +69,37 @@ public class Guard : MonoBehaviour
 			transform.position = Vector3.MoveTowards(transform.position, _target.transform.position, step);
 			break;
 		case GuardStates.ATTACK:
-			Debug.Log("Guard : Die communist scum !");
-			//TODO: attack
+			_attackTimer += Time.deltaTime;
+			if(_attackTimer >= attackSpeed)
+			{
+                Debug.Log("Attack !");
+				_target.Hit(strength);
+				_attackTimer = 0f;
+			}
 			break;
 		}
 	}
 
 	void OnTriggerEnter(Collider other)
 	{
-		if(other.GetComponent<Peon>() != null)
+		Entity triggeringEntity = other.GetComponent<Entity>();
+
+		if(triggeringEntity is Peon || triggeringEntity is Player)
 		{
 			_state = GuardStates.ATTACK;
 		}
+	}
+
+	private void OnPeonRemoved(Peon p)
+	{
+		if(_target == p)
+			_target = null;
+		_state = GuardStates.IDLE;
+	}
+
+	void OnDisable()
+	{
+		UnitsManager.OnRemovePeon -= OnPeonRemoved;
+
 	}
 }
