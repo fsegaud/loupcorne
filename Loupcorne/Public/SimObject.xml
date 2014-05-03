@@ -2,18 +2,23 @@
 <ArrayOfSimObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 
 	<SimObject Name="King" Class="Player">
-	  <SimProperty Name="Stamina" BaseValue="10" />
-	  <SimProperty Name="Strength" BaseValue="10" />
+	  <SimProperty Name="LifePoints" BaseValue="10" />
+	  <SimProperty Name="Speed" BaseValue="10" />
+	  <SimProperty Name="Attack" BaseValue="10" />
+	  <SimProperty Name="Defence" BaseValue="10" />
 	</SimObject>
 
 	<SimObject Name="Peon" Class="Friend">
-	  <SimProperty Name="Stamina" BaseValue="10" />
-	  <SimProperty Name="Strength" BaseValue="10" />
+	  <SimProperty Name="LifePoints" BaseValue="7" />
+	  <SimProperty Name="Speed" BaseValue="7" />
+	  <SimProperty Name="Defence" BaseValue="7" />
 	</SimObject>
 
 	<SimObject Name="Guard" Class="Foe">
-	  <SimProperty Name="Stamina" BaseValue="10" />
-	  <SimProperty Name="Strength" BaseValue="10" />
+	  <SimProperty Name="LifePoints" BaseValue="10" />
+	  <SimProperty Name="Speed" BaseValue="10" />
+	  <SimProperty Name="Attack" BaseValue="10" />
+	  <SimProperty Name="Defence" BaseValue="10" />
 	</SimObject>
 
 </ArrayOfSimObject>
