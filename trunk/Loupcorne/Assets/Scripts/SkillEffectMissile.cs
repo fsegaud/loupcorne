@@ -4,12 +4,7 @@ using System.Linq;
 
 public class SkillEffectMissile : SkillEffect
 {
-    void Start()
-    {
-        this.SkillEffectElement = LoupCorne.Framework.Database.Instance.GetDatatable<SkillEffectElement>().GetElement("MissileTest");
-    }
-
-	void Update ()
+    void Update ()
     {
         //this.transform.Translate(this.transform.forward * Time.deltaTime * this.SkillEffectElement.Speed);
         this.transform.position += (this.transform.forward * Time.deltaTime * this.SkillEffectElement.Speed);

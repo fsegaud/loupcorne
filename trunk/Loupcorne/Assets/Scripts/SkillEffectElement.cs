@@ -64,4 +64,18 @@ public class SkillEffectElement : LoupCorne.Framework.DatatableElement
         get;
         protected set;
     }
+
+    [XmlElement]
+    public float Duration
+    {
+        get;
+        private set;
+    }
+
+    [XmlElement]
+    public float Radius
+    {
+        get;
+        protected set;
+    }
 }

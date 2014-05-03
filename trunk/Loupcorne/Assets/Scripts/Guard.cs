@@ -1,4 +1,4 @@
-﻿#define _STAY_IDLE
+﻿//#define _STAY_IDLE
 
 using UnityEngine;
 using System.Collections;
