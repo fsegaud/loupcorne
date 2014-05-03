@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfSkillEffectElement xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 
-	<!-- test Missile -->
 	<SkillEffectElement Name="MissileTest" Type="Missile" Prefab="SkillEffect/Missile">
 		<Title>Test Missile</Title>
 		<Tags>Guard,Peon</Tags>
@@ -9,9 +8,8 @@
 		<Damage>6</Damage>
 		<DestroyOnHitSuccess>true</DestroyOnHitSuccess>
 		<DestroyOnHitFailure>true</DestroyOnHitFailure>
-		<Gfx>Gfx/Explosion01</Gfx>
-		<Descriptor>Test_AttackBoost</Descriptor>
 		<AlignementGainOnUse>-1</AlignementGainOnUse>
+		<Gfx>Gfx/Explosion01</Gfx>
 	</SkillEffectElement>
 
 	<SkillEffectElement Name="AoeTest" Type="Aoe" Prefab="SkillEffect/Aoe">
@@ -20,7 +18,16 @@
 		<Damage>2.5</Damage>
 		<Radius>10</Radius>
 		<Duration>5</Duration>
+	</SkillEffectElement>
+
+	<SkillEffectElement Name="BuffTest" Type="Buff" Prefab="SkillEffect/Buff">
+		<Title>Test Buff</Title>
+		<Tags>King</Tags>
+		<Descriptor>BuffTestPassive</Descriptor>
+		<BuffDescriptor>BuffTestActive</BuffDescriptor>
+		<Duration>5</Duration>
 		<AlignementGainOnUse>1</AlignementGainOnUse>
+		<Gfx>Gfx/Explosion01</Gfx>
 	</SkillEffectElement>
 
 </ArrayOfSkillEffectElement>

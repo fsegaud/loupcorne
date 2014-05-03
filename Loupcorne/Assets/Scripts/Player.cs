@@ -54,13 +54,13 @@ public class Player : Entity
     {
 #if UNITY_EDITOR
         string debugInfo = string.Format(
-            "MaxHealth={0}\nAtk={1}, Def={2}\nSpeed={3}\nCDR={4} DmgR={5}\nAlignement={6}\n{7}",
+            "MaxHealth={0}\nAtk={1}, Def={2}\nSpeed={3}\nCDR={4}, DmgR={5}\nAlignement={6}\n{7}",
             this.GetPropertyValue(SimProperties.MaxHealth),
             this.GetPropertyValue(SimProperties.Attack),
             this.GetPropertyValue(SimProperties.Defence),
             this.GetPropertyValue(SimProperties.Speed),
             this.GetPropertyValue(SimProperties.CooldownReductionRatio),
-            string.Empty,
+            this.GetPropertyValue(SimProperties.DamageReductionRatio),
             this.GetPropertyValue(SimProperties.Alignement),
             string.Join("\n", this.GetTags()));
 

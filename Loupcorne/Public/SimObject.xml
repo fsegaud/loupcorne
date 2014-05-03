@@ -8,6 +8,7 @@
 	  <SimProperty Name="Defence" BaseValue="10" />
 	  <SimProperty Name="CooldownReductionRatio" BaseValue="1" />
 	  <SimProperty Name="Alignement" BaseValue="0" />
+	  <SimProperty Name="DamageReductionRatio" BaseValue="1" />
 	</SimObject>
 
 	<SimObject Name="Peon" Class="Friend">
