@@ -41,7 +41,6 @@ public class Guard : Entity
 		switch(_state)
 		{
 		case GuardStates.IDLE:
-			Debug.Log("Guard is idle");
 			foreach(Peon peon in _um.peons)
 			{
 				float distToPeon = Vector3.Distance(transform.position, peon.transform.position);
@@ -79,7 +78,6 @@ public class Guard : Entity
 			_attackTimer += Time.deltaTime;
 			if(_attackTimer >= attackSpeed)
 			{
-                Debug.Log("Attack !");
 				_target.Hit(strength);
 				_attackTimer = 0f;
 			}

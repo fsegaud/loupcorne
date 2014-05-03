@@ -30,5 +30,10 @@ class Skill
         }
 
         o.GetComponent<SkillEffect>().SkillEffectElement = element;
+
+        // Apply alignement change.
+        double currentAlignement = player.GetPropertyValue(SimProperties.Alignement);
+        player.SetPropertyBaseValue(SimProperties.Alignement, currentAlignement + element.AlignementGainOnUse);
+        player.Refresh();
     }
 }
