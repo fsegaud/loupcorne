@@ -46,11 +46,17 @@ public class Guard : Entity
         _state = GuardStates.IDLE;
         return;
 #endif
+        animation["run"].speed = (float)this.GetPropertyValue(SimProperties.Speed) / 3;
+        animation["hit"].weight = 2;
+        animation["hit"].speed = 2;
+        animation["hit"].blendMode = AnimationBlendMode.Additive;
+        
         _navAgent.speed = (float)this.GetPropertyValue(SimProperties.Speed);
 
 		switch(_state)
 		{
 		case GuardStates.IDLE:
+                animation.CrossFade("idle");
             float distToPlayer = Vector3.Distance(transform.position, _um.player.transform.position);
             bool targetAssigned = false;
             //Search for a peon in visible area
@@ -93,10 +99,11 @@ public class Guard : Entity
             }
 			break;
 		case GuardStates.CHASING:
+                animation.CrossFade("run");
             _navAgent.SetDestination(_target.transform.position);
 			break;
 		case GuardStates.ATTACK:
-            //_navAgent.Stop();
+            animation.Play("hit");
 			_attackTimer += Time.deltaTime;
 			if(_attackTimer >= attackSpeed)
             {
