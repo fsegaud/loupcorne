@@ -10,6 +10,7 @@ public class Entity : SimObjectWrapper
 
 	protected virtual void Start () 
     {
+        _health = (float)this.GetPropertyValue(SimProperties.MaxHealth);
         this._maxHealth = this._health;
         Debug.Log(this._health + "/" + this._maxHealth);
 	}
@@ -28,7 +29,6 @@ public class Entity : SimObjectWrapper
         }
 
         _health -= hitStrength * damageReductionRation;
-        Debug.Log("Aie !");
         if (_health <= 0)
             Kill();
     }

@@ -18,39 +18,25 @@ public class Player : Entity
 
 	protected override void Start () 
     {
-        base.Start();
+      
 
         _state = PlayerState.IDLE;
+
+        
 
         // Apply simulation object.
         this.SetSimObject(LoupCorne.Framework.Database.Instance.GetDatatable<LoupCorne.Framework.SimObject>().GetElement("King"));
 
-        //// Add all skills to locked skill list.
-        //LoupCorne.Framework.IDatatable<SkillEffectElement> skillDatatable = LoupCorne.Framework.Database.Instance.GetDatatable<SkillEffectElement>();
-        //List<string> skillEffectEllementNames = skillDatatable.GetElements().Select(e => e.Name).ToList();
-        //skillEffectEllementNames.ForEach(n => this.lockedSkills.Add(new Skill() { SkillEffectName = n }));
-
-        //// For now, all skills are considered unlocked.
-        //this.skills.AddRange(this.lockedSkills);
-
-        //// Apply all skill's simulation descriptors.
-        //LoupCorne.Framework.IDatatable<LoupCorne.Framework.SimDescriptor> descriptorDatatable = LoupCorne.Framework.Database.Instance.GetDatatable<LoupCorne.Framework.SimDescriptor>();
-        //foreach (Skill s in this.skills)
-        //{
-        //    string descriptorName = skillDatatable.GetElement(s.SkillEffectName).Descriptor;
-        //    if (!string.IsNullOrEmpty(descriptorName))
-        //    {
-        //        LoupCorne.Framework.SimDescriptor descriptor = descriptorDatatable.GetElement(descriptorName);
-        //        this.AddDescriptor(descriptor);
-        //    }
-        //}
+   
 
         SkillManager.OnSkillUnlocked += this.SkillManager_OnSkillUnlocked;
-        SkillManager.Instance.UnlockSkill(1, Skill.Alignment.Test);
-        SkillManager.Instance.UnlockSkill(2, Skill.Alignment.Test);
-        SkillManager.Instance.UnlockSkill(3, Skill.Alignment.Test);
+        SkillManager.Instance.UnlockSkill(1, Skill.Alignment.Good);
+        SkillManager.Instance.UnlockSkill(2, Skill.Alignment.Evil);
+        SkillManager.Instance.UnlockSkill(3, Skill.Alignment.Good);
 
         this.Refresh();
+
+        base.Start();
 	}
 
     void Destroy()
@@ -85,9 +71,11 @@ public class Player : Entity
 	void Update () 
     {
         //Animation Speed
-       // animation["idle"].speed = (float)this.GetPropertyValue(SimProperties.Speed) / 5f;
+        animation["hit"].weight = 2;
+        animation["hit"].speed = 2;
+        animation["hit"].blendMode = AnimationBlendMode.Additive;
         animation["run"].speed = (float)this.GetPropertyValue(SimProperties.Speed) / 5f;
-
+       
         //Player Rotation
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit[] hits = Physics.RaycastAll(ray);
@@ -104,6 +92,26 @@ public class Player : Entity
             _state = PlayerState.MOVING;
         else
             _state = PlayerState.IDLE;
+
+
+       
+        if (Input.GetMouseButtonDown(0))
+        {
+            animation.Play("hit");
+            Vector3 attackDirection = transform.forward; //* (float)this.GetPropertyValue(SimProperties.AttackRange);
+            Vector3 attackOrigin = new Vector3(transform.position.x, 1, transform.position.z);
+            Ray attacRay = new Ray(attackOrigin, attackDirection);
+            RaycastHit attackHit;
+            if (Physics.Raycast(attacRay, out attackHit, (float)this.GetPropertyValue(SimProperties.AttackRange)))
+            {
+                if (attackHit.collider.gameObject.CompareTag("Guard") || attackHit.collider.gameObject.CompareTag("Peon"))
+                {
+                    Entity target = attackHit.collider.GetComponent<Entity>();
+                    float hitStrength = (float)this.GetPropertyValue(SimProperties.Attack) * 0.3f - (float)target.GetPropertyValue(SimProperties.Defence) * 0.1f;
+                    target.Hit(hitStrength);
+                }
+            }
+        }
   
         switch (_state)
         { 

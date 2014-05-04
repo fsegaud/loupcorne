@@ -14,7 +14,6 @@ public class Guard : Entity
 	private GuardStates _state;
 	private UnitsManager _um;
 	[SerializeField] private float viewDistance;
-	[SerializeField] private float strength;
 	[SerializeField] private float attackSpeed;
 	private Entity _target;
 	private float _attackTimer;
@@ -23,7 +22,7 @@ public class Guard : Entity
 	
 	protected override void Start () 
 	{
-        base.Start();
+       
 
 		_um = UnitsManager.Instance;
 		_state = GuardStates.IDLE;
@@ -37,6 +36,8 @@ public class Guard : Entity
         // Apply simulation object.
         this.SetSimObject(LoupCorne.Framework.Database.Instance.GetDatatable<LoupCorne.Framework.SimObject>().GetElement("Guard"));
         this.Refresh();
+
+        base.Start();
 	}
 
 	void Update () 
@@ -95,11 +96,23 @@ public class Guard : Entity
             _navAgent.SetDestination(_target.transform.position);
 			break;
 		case GuardStates.ATTACK:
-            _navAgent.Stop();
+            //_navAgent.Stop();
 			_attackTimer += Time.deltaTime;
 			if(_attackTimer >= attackSpeed)
-			{
-				_target.Hit(strength);
+            {
+                Vector3 attackDirection = transform.forward;// * (float)this.GetPropertyValue(SimProperties.AttackRange);
+                Vector3 attackOrigin = new Vector3(transform.position.x, 1, transform.position.z);
+                Ray attacRay = new Ray(attackOrigin, attackDirection);
+                RaycastHit attackHit;
+                if (Physics.Raycast(attacRay, out attackHit, (float)this.GetPropertyValue(SimProperties.AttackRange)))
+                {
+                    Entity hitEntity = attackHit.collider.GetComponent<Entity>();
+                    if (hitEntity != null && hitEntity == _target)
+                    {
+                        float effectiveDmg = (float)this.GetPropertyValue(SimProperties.Attack) * 0.3f - (float)_target.GetPropertyValue(SimProperties.Defence) * 0.1f;
+                        _target.Hit(effectiveDmg);
+                    }
+                }
 				_attackTimer = 0f;
 			}
 			break;
