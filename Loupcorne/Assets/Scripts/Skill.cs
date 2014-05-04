@@ -3,6 +3,12 @@ using UnityEngine;
 
 class Skill
 {
+    public enum Alignment
+    {
+        Good = 0,
+        Evil
+    }
+
     public string SkillEffectName
     {
         get;
