@@ -53,7 +53,6 @@ class SkillEffectAoe : SkillEffect
         // Check for elapsed timer.
         if (Time.time >= this.startTime + this.SkillEffectElement.Duration)
         {
-            Debug.Log("DESTROY AOE");
             GameObject.Destroy(this.gameObject);
         }
     }
