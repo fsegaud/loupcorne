@@ -14,7 +14,6 @@ public class Guard : Entity
 	private GuardStates _state;
 	private UnitsManager _um;
 	[SerializeField] private float viewDistance;
-	[SerializeField] private float speed;
 	[SerializeField] private float strength;
 	[SerializeField] private float attackSpeed;
 	private Entity _target;
@@ -35,6 +34,7 @@ public class Guard : Entity
 
         // Apply simulation object.
         this.SetSimObject(LoupCorne.Framework.Database.Instance.GetDatatable<LoupCorne.Framework.SimObject>().GetElement("Guard"));
+        this.Refresh();
 	}
 
 	void Update () 
@@ -43,6 +43,7 @@ public class Guard : Entity
         _state = GuardStates.IDLE;
         return;
 #endif
+        _navAgent.speed = (float)this.GetPropertyValue(SimProperties.Speed);
 
 		switch(_state)
 		{
