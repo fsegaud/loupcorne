@@ -28,7 +28,16 @@ public class Entity : SimObjectWrapper
     }
 
     public virtual void Kill()
-    {}
+    {
+        if (!(this is Player))
+        {
+            Player player = UnitsManager.Instance.player;
+            double alignmentReward = this.GetPropertyValue(SimProperties.AlignmentRewardOnDeath);
+            double currentPlayerAlignment = player.GetPropertyValue(SimProperties.Alignement);
+            player.SetPropertyBaseValue(SimProperties.Alignement, currentPlayerAlignment + alignmentReward);
+            player.Refresh();
+        }
+    }
 
     protected virtual void OnGUI()
     {

@@ -65,10 +65,11 @@ public class Peon : Entity
 
 	public override void Kill()
 	{
+        base.Kill();
+
 		Debug.Log ("WAAARRRGHHH");
 		_um.RemovePeon(this);
 		Destroy(gameObject);
-
 	}
 
 	void OnTriggerEnter(Collider other)

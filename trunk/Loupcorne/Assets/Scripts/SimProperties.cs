@@ -8,4 +8,5 @@ public static class SimProperties
     public static readonly string CooldownReductionRatio = "CooldownReductionRatio";
     public static readonly string Alignement = "Alignement";
     public static readonly string DamageReductionRatio = "DamageReductionRatio";
+    public static readonly string AlignmentRewardOnDeath = "AlignmentRewardOnDeath";
 }
