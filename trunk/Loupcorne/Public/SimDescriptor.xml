@@ -47,11 +47,11 @@
 
 	<!-- Skills -->
 
-	<SimDescriptor Name="BuffTestActive" Class="BuffTestActive">
+	<SimDescriptor Name="SkillEffectTest3Active" Class="SkillEffectTest3Active">
 		<SimModifier Operator="Product" Target="DamageReductionRatio" Value="0" Path="Player" />
 	</SimDescriptor>
 
-	<SimDescriptor Name="BuffTestPassive" Class="BuffTestPassive">
+	<SimDescriptor Name="SkillEffectTest3Passive" Class="SkillEffectTest3Passive">
 		<SimModifier Operator="Percent" Target="Defence" Value=".3" Path="Player" />
 	</SimDescriptor>
 

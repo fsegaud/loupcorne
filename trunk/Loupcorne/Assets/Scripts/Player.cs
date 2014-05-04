@@ -46,7 +46,9 @@ public class Player : Entity
         //}
 
         SkillManager.OnSkillUnlocked += this.SkillManager_OnSkillUnlocked;
-        SkillManager sm = SkillManager.Instance; // Hack to init.
+        SkillManager.Instance.UnlockSkill(1, Skill.Alignment.Test);
+        SkillManager.Instance.UnlockSkill(2, Skill.Alignment.Test);
+        SkillManager.Instance.UnlockSkill(3, Skill.Alignment.Test);
 
         this.Refresh();
 	}

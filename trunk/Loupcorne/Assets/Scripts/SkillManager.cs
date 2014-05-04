@@ -41,15 +41,15 @@ class SkillManager
         List<string> skillEffectEllementNames = skillDatatable.GetElements().Select(e => e.Name).ToList();
         skillEffectEllementNames.ForEach(n => this.lockedSkills.Add(new Skill() { SkillEffectName = n }));
 
-        // For now, all skills are considered unlocked.
-        this.unlockedSkills.AddRange(this.lockedSkills);
-        if (SkillManager.OnSkillUnlocked != null)
-        {
-            this.unlockedSkills.ForEach(s => SkillManager.OnSkillUnlocked.Invoke(s));
-        }
+        //// For now, all skills are considered unlocked.
+        //this.unlockedSkills.AddRange(this.lockedSkills);
+        //if (SkillManager.OnSkillUnlocked != null)
+        //{
+        //    this.unlockedSkills.ForEach(s => SkillManager.OnSkillUnlocked.Invoke(s));
+        //}
     }
 
-    private void UnlockSkill(int rank, Skill.Alignment alignment)
+    public void UnlockSkill(int rank, Skill.Alignment alignment)
     {
         string skillName = string.Format("SkillEffect{0}{1}", alignment, rank);
         Skill skill = this.lockedSkills.SingleOrDefault(s => s.SkillEffectName == skillName);
