@@ -10,6 +10,7 @@
 	  <SimProperty Name="Alignement" BaseValue="0" />
 	  <SimProperty Name="DamageReductionRatio" BaseValue="1" />
 	  <SimProperty Name="AttackRange" BaseValue="3" />
+	  <SimProperty Name="AlignmentRewardOnDeath" BaseValue="0" />
 	</SimObject>
 
 	<SimObject Name="Peon" Class="Friend">

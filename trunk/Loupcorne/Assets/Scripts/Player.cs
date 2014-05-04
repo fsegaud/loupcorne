@@ -30,9 +30,8 @@ public class Player : Entity
    
 
         SkillManager.OnSkillUnlocked += this.SkillManager_OnSkillUnlocked;
-        SkillManager.Instance.UnlockSkill(1, Skill.Alignment.Good);
-        SkillManager.Instance.UnlockSkill(2, Skill.Alignment.Evil);
-        SkillManager.Instance.UnlockSkill(3, Skill.Alignment.Good);
+        SkillManager.Instance.UnlockSkill(1, Skill.Alignment.Evil);
+        SkillManager.Instance.UnlockSkill(2, Skill.Alignment.Good);
 
         this.Refresh();
 
@@ -98,6 +97,9 @@ public class Player : Entity
         if (Input.GetMouseButtonDown(0))
         {
             animation.Play("hit");
+            string sfxName = string.Format(@"Sfx/Sword{0}", Random.Range(1, 3));
+            GameObject.Instantiate(Resources.Load(sfxName), this.transform.position, this.transform.rotation);
+
             Vector3 attackDirection = transform.forward; //* (float)this.GetPropertyValue(SimProperties.AttackRange);
             Vector3 attackOrigin = new Vector3(transform.position.x, 1, transform.position.z);
             Ray attacRay = new Ray(attackOrigin, attackDirection);
