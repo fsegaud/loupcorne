@@ -6,7 +6,8 @@ class Skill
     public enum Alignment
     {
         Good = 0,
-        Evil
+        Evil,
+        Test
     }
 
     public string SkillEffectName
