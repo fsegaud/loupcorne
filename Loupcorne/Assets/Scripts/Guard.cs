@@ -100,19 +100,21 @@ public class Guard : Entity
 			_attackTimer += Time.deltaTime;
 			if(_attackTimer >= attackSpeed)
             {
-                Vector3 attackDirection = transform.forward;// * (float)this.GetPropertyValue(SimProperties.AttackRange);
-                Vector3 attackOrigin = new Vector3(transform.position.x, 1, transform.position.z);
-                Ray attacRay = new Ray(attackOrigin, attackDirection);
-                RaycastHit attackHit;
-                if (Physics.Raycast(attacRay, out attackHit, (float)this.GetPropertyValue(SimProperties.AttackRange)))
-                {
-                    Entity hitEntity = attackHit.collider.GetComponent<Entity>();
-                    if (hitEntity != null && hitEntity == _target)
-                    {
-                        float effectiveDmg = (float)this.GetPropertyValue(SimProperties.Attack) * 0.3f - (float)_target.GetPropertyValue(SimProperties.Defence) * 0.1f;
-                        _target.Hit(effectiveDmg);
-                    }
-                }
+                //Vector3 attackDirection = transform.forward;// * (float)this.GetPropertyValue(SimProperties.AttackRange);
+                //Vector3 attackOrigin = new Vector3(transform.position.x, 1, transform.position.z);
+                //Ray attacRay = new Ray(attackOrigin, attackDirection);
+                //RaycastHit attackHit;
+                //if (Physics.Raycast(attacRay, out attackHit, (float)this.GetPropertyValue(SimProperties.AttackRange)))
+                //{
+                //    Entity hitEntity = attackHit.collider.GetComponent<Entity>();
+                //    if (hitEntity != null && hitEntity == _target)
+                //    {
+                //        float effectiveDmg = (float)this.GetPropertyValue(SimProperties.Attack) * 0.3f - (float)_target.GetPropertyValue(SimProperties.Defence) * 0.1f;
+                //        _target.Hit(effectiveDmg);
+                //    }
+                //}
+                float effectiveDmg = (float)this.GetPropertyValue(SimProperties.Attack) * 0.3f - (float)_target.GetPropertyValue(SimProperties.Defence) * 0.1f;
+                _target.Hit(effectiveDmg);
 				_attackTimer = 0f;
 			}
 			break;

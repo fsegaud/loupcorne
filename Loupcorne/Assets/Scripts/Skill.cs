@@ -17,7 +17,7 @@ public class Skill
     }
 
     private float cooldown = -1f;
-    private float lastCast = 0f;
+    private float lastCast = -1000f;
     public float Timer
     {
         get

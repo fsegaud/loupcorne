@@ -47,5 +47,9 @@ EditorBuildSettings:
     path: Assets/Sample Assets/Sample Scenes/Scenes/Third Person Character.unity
   - enabled: 0
     path: Assets/Sample Assets/Sample Scenes/Scenes/2D Character.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/test.unity
+  - enabled: 0
+    path: Assets/3C.unity
+  - enabled: 1
+    path: Assets/3C.unity
