@@ -47,9 +47,9 @@ public class Guard : Entity
         return;
 #endif
         animation["run"].speed = (float)this.GetPropertyValue(SimProperties.Speed) / 3;
-        animation["hit"].weight = 2;
-        animation["hit"].speed = 2;
-        animation["hit"].blendMode = AnimationBlendMode.Additive;
+        //animation["hit"].weight = 2;
+        //animation["hit"].speed = 2;
+        //animation["hit"].blendMode = AnimationBlendMode.Additive;
         
         _navAgent.speed = (float)this.GetPropertyValue(SimProperties.Speed);
 
