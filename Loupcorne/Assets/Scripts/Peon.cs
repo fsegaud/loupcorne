@@ -16,8 +16,10 @@ public class Peon : Entity
 
     private NavMeshAgent _navAgent;
 
-	void Start () 
+	protected override void Start () 
 	{
+        base.Start();
+
 		_um = UnitsManager.Instance;
 		_state = PeonStates.IDLE;
 

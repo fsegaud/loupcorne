@@ -3,16 +3,20 @@ using System.Collections;
 
 public class Entity : SimObjectWrapper 
 {
+    [SerializeField] protected float _healthBarUpOffset;
     [SerializeField] protected float _health;
+    
+    protected float _maxHealth;
 
-
-	void Start () 
+	protected virtual void Start () 
     {
-	
+        this._maxHealth = this._health;
+        Debug.Log(this._health + "/" + this._maxHealth);
 	}
 	
 	void Update () 
     {
+	    //TODO inputs ?
 	}
 
 	public virtual void Hit(float hitStrength)
@@ -25,4 +29,10 @@ public class Entity : SimObjectWrapper
 
     public virtual void Kill()
     {}
+
+    protected virtual void OnGUI()
+    {
+        Vector3 point = Camera.main.WorldToScreenPoint(this.transform.position + this.transform.up * _healthBarUpOffset);
+        GUI.Box(new Rect(point.x - 20f, Screen.height - point.y, 40f * (this._health / this._maxHealth), 10f), string.Empty);
+    }
 }

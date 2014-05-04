@@ -15,8 +15,10 @@ public class Player : Entity
     private readonly List<Skill> skills = new List<Skill>();
     private int activeSkill = 0;
 
-	void Start () 
+	protected override void Start () 
     {
+        base.Start();
+
         _state = PlayerState.IDLE;
 
         // Apply simulation object.
@@ -42,8 +44,10 @@ public class Player : Entity
         this.Refresh();
 	}
 
-    void OnGUI()
+    protected override void OnGUI()
     {
+        base.OnGUI();
+
 #if UNITY_EDITOR
         string debugInfo = string.Format(
             "MaxHealth={0}\nAtk={1}, Def={2}\nSpeed={3}\nCDR={4}, DmgR={5}\nAlignement={6}\n{7}",
