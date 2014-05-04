@@ -43,6 +43,8 @@ public class Entity : SimObjectWrapper
             player.SetPropertyBaseValue(SimProperties.Alignement, currentPlayerAlignment + alignmentReward);
             player.Refresh();
         }
+
+        GameObject.Instantiate(Resources.Load(@"Sfx/Wilhlem"), this.transform.position, this.transform.rotation);
     }
 
     protected virtual void OnGUI()

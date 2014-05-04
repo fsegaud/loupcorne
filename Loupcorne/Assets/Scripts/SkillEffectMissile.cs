@@ -38,7 +38,7 @@ public class SkillEffectMissile : SkillEffect
 
                 if(!string.IsNullOrEmpty(this.SkillEffectElement.Sfx))
                 {
-                    /* TODO: Play sfx. */
+                    GameObject.Instantiate(Resources.Load(this.SkillEffectElement.Sfx), this.transform.position, this.transform.rotation);
                 }
             }
         }

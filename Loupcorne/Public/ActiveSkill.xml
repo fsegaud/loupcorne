@@ -19,6 +19,7 @@
 		<DestroyOnHitFailure>true</DestroyOnHitFailure>
 		<AlignementGainOnUse>1</AlignementGainOnUse>
 		<Gfx>Gfx/Explosion01</Gfx>
+		<Sfx>Sfx/Boom</Sfx>
 	</SkillEffectElement>
 	
 	<SkillEffectElement Name="SkillEffectGood3" Type="Buff" Prefab="SkillEffect/Buff">
@@ -39,6 +40,7 @@
 		<DestroyOnHitFailure>true</DestroyOnHitFailure>
 		<AlignementGainOnUse>-1</AlignementGainOnUse>
 		<Gfx>Gfx/Explosion01</Gfx>
+		<Sfx>Sfx/Boom</Sfx>
 	</SkillEffectElement>
 
 	<SkillEffectElement Name="SkillEffectEvil2" Type="Buff" Prefab="SkillEffect/Buff">

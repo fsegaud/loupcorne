@@ -1,0 +1,26 @@
+    __                      ______                    
+   / /   ____  __  ______  / ____/___  _________  ___ 
+  / /   / __ \/ / / / __ \/ /   / __ \/ ___/ __ \/ _ \
+ / /___/ /_/ / /_/ / /_/ / /___/ /_/ / /  / / / /  __/
+/_____/\____/\__,_/ .___/\____/\____/_/  /_/ /_/\___/ 
+                 /_/        #LaGrandeConfitureDeJeux
+
+--== Game Designer ==--
+Kevin Nguyen Kim Tuoï
+
+--== Programmers ==--
+Pierre Maury
+François Ségaud
+
+--== Artists ==--
+Baptiste Doux
+Olivier Leroy
+
+--== Animator ==--
+Baptiste Doux
+
+--== Sound Designer ==--
+Marc-Antoine Archier
+
+[Textures]
+http://cgtextures.com
