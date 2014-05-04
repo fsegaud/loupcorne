@@ -139,6 +139,8 @@ public class Guard : Entity
 
     public override void Kill()
     {
+        base.Kill();
+
         Debug.Log("WAAARRRGHHH");
         _um.RemoveGuard(this);
         Destroy(gameObject);
