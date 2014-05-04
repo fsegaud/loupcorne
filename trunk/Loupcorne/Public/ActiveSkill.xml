@@ -25,7 +25,7 @@
 		<Title>Test Buff</Title>
 		<Tags>King</Tags>
 		<BuffDescriptor>SkillEffectGood</BuffDescriptor>
-		<Duration>5</Duration>
+		<Duration>10</Duration>
 		<AlignementGainOnUse>1</AlignementGainOnUse>
 		<Gfx>Gfx/Explosion01</Gfx>
 	</SkillEffectElement>
@@ -34,7 +34,7 @@
 		<Title>Test Missile</Title>
 		<Tags>Guard,Peon</Tags>
 		<Speed>17.5</Speed>
-		<Damage>2</Damage>
+		<Damage>0.2</Damage>
 		<DestroyOnHitSuccess>true</DestroyOnHitSuccess>
 		<DestroyOnHitFailure>true</DestroyOnHitFailure>
 		<AlignementGainOnUse>-1</AlignementGainOnUse>
@@ -44,8 +44,9 @@
 	<SkillEffectElement Name="SkillEffectEvil2" Type="Buff" Prefab="SkillEffect/Buff">
 		<Title>Test Buff</Title>
 		<Tags>King</Tags>
-		<Descriptor>SkillEffectEvil</Descriptor>
-		<Duration>5</Duration>
+		<BuffDescriptor>SkillEffectEvilActive</BuffDescriptor>
+		<Descriptor>SkillEffectEvilPassive</Descriptor>
+		<Duration>15</Duration>
 		<AlignementGainOnUse>-1</AlignementGainOnUse>
 		<Gfx>Gfx/Explosion01</Gfx>
 	</SkillEffectElement>

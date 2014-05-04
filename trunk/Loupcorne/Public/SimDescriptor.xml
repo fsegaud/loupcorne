@@ -57,9 +57,12 @@
 		<SimModifier Operator="Product" Target="DamageReductionRatio" Value="0" Path="Player" />
 	</SimDescriptor>
 	
-	<SimDescriptor Name="SkillEffectEvil" Class="SkillEffectEvil">
+	<SimDescriptor Name="SkillEffectEvilPassive" Class="SkillEffectEvilPassive">
 		<SimModifier Operator="Product" Target="CooldownReductionRatio" Value="0.3" Path="Player" />
 	</SimDescriptor>
-
+	
+	<SimDescriptor Name="SkillEffectEvilActive" Class="SkillEffectEvilActive">
+		<SimModifier Operator="Product" Target="Attack" Value="1.5" Path="Player" />
+	</SimDescriptor>
 
 </ArrayOfSimDescriptor>
