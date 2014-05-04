@@ -21,7 +21,13 @@ public class Entity : SimObjectWrapper
 
 	public virtual void Hit(float hitStrength)
 	{
-        _health -= hitStrength;
+        float damageReductionRation = 1f;
+        if (this is Player)
+        {
+            damageReductionRation = (float)this.GetPropertyValue(SimProperties.DamageReductionRatio);
+        }
+
+        _health -= hitStrength * damageReductionRation;
         Debug.Log("Aie !");
         if (_health <= 0)
             Kill();
