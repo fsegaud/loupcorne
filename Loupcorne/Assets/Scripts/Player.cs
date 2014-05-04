@@ -154,7 +154,25 @@ public class Player : Entity
             }
         }
 
-        if (Input.GetMouseButtonDown(1))
+        // Web browser support
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            this.activeSkill--;
+        }
+        else if (Input.GetKeyDown(KeyCode.E))
+        {
+            this.activeSkill++;
+        }
+        if (this.activeSkill < 0)
+        {
+            this.activeSkill = SkillManager.Instance.Skills.Count - 1;
+        }
+        else if (this.activeSkill > SkillManager.Instance.Skills.Count - 1)
+        {
+            this.activeSkill = 0;
+        }
+
+        if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Space))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit[] hits = Physics.RaycastAll(ray);
