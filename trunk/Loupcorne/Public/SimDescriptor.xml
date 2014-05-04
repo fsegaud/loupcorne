@@ -58,7 +58,7 @@
 	</SimDescriptor>
 	
 	<SimDescriptor Name="SkillEffectEvil" Class="SkillEffectEvil">
-		<SimModifier Operator="Product" Target="Cooldown" Value="1.5" Path="Player" />
+		<SimModifier Operator="Product" Target="CooldownReductionRatio" Value="0.3" Path="Player" />
 	</SimDescriptor>
 
 
