@@ -68,6 +68,6 @@ public class Entity : SimObjectWrapper
     protected virtual void OnGUI()
     {
         Vector3 point = Camera.main.WorldToScreenPoint(this.transform.position + this.transform.up * _healthBarUpOffset);
-        GUI.Box(new Rect(point.x - 20f, Screen.height - point.y, 40f * (this._health / this._maxHealth), 10f), string.Empty);
+        GUI.Box(new Rect(point.x - 20f, Screen.height - point.y, 40f * Mathf.Clamp01(this._health / this._maxHealth), 10f), string.Empty);
     }
 }

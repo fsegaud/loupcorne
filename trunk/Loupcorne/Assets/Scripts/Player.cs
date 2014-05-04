@@ -31,7 +31,11 @@ public class Player : Entity
 
         SkillManager.OnSkillUnlocked += this.SkillManager_OnSkillUnlocked;
         SkillManager.Instance.UnlockSkill(1, Skill.Alignment.Evil);
+        SkillManager.Instance.UnlockSkill(2, Skill.Alignment.Evil);
+        SkillManager.Instance.UnlockSkill(3, Skill.Alignment.Evil);
+        SkillManager.Instance.UnlockSkill(1, Skill.Alignment.Good);
         SkillManager.Instance.UnlockSkill(2, Skill.Alignment.Good);
+        SkillManager.Instance.UnlockSkill(3, Skill.Alignment.Good);
 
         this.Refresh();
 
@@ -47,9 +51,9 @@ public class Player : Entity
     {
         base.OnGUI();
 
-#if UNITY_EDITOR
+//#if UNITY_EDITOR
         string debugInfo = string.Format(
-            "MaxHealth={0}\nAtk={1}, Def={2}\nSpeed={3}\nCDR={4}, DmgR={5}\nAlignement={6}\n{7}",
+            "MaxHealth={0}\nAtk={1}, Def={2}\nSpeed={3}\nCDR={4}, DmgR={5}\nAlignement={6}\n-----\n{7}",
             this.GetPropertyValue(SimProperties.MaxHealth),
             this.GetPropertyValue(SimProperties.Attack),
             this.GetPropertyValue(SimProperties.Defence),
@@ -62,9 +66,9 @@ public class Player : Entity
         GUI.Box(new Rect(10, 10, 200, 25), string.Empty);
         GUI.Label(new Rect(10, 10, 200, 25), string.Format("ActiveSkill={0} ({1})", SkillManager.Instance.Skills[this.activeSkill].SkillEffectName, SkillManager.Instance.Skills[this.activeSkill].Timer.ToString("0.0")));
 
-        GUI.Box(new Rect(10, 40, 200, 200), string.Empty);
-        GUI.Label(new Rect(10, 40, 200, 200), debugInfo);
-#endif
+        GUI.Box(new Rect(10, 40, 200, 175), string.Empty);
+        GUI.Label(new Rect(10, 40, 200, 175), debugInfo);
+//#endif
     }
 
 	void Update () 
