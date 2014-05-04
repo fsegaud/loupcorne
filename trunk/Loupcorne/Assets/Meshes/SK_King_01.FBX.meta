@@ -38,6 +38,8 @@ ModelImporter:
     100064: Bip001 Spine
     100066: //RootNode
     100068: Sphere001
+    100070: RB_KingSword_01
+    100072: SK_King_01
     400000: Bip001
     400002: Bip001 Head
     400004: Bip001 L Calf
@@ -73,13 +75,20 @@ ModelImporter:
     400064: Bip001 Spine
     400066: //RootNode
     400068: Sphere001
+    400070: RB_KingSword_01
+    400072: SK_King_01
+    2300000: RB_KingSword_01
+    3300000: RB_KingSword_01
     4300000: Sphere001
+    4300002: RB_KingSword_01
+    4300004: SK_King_01
     7400000: idle
     7400002: run
     7400004: hit
     9500000: //RootNode
     11100000: //RootNode
     13700000: Sphere001
+    13700002: SK_King_01
   materials:
     importMaterials: 1
     materialName: 0
