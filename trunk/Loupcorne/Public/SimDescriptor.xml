@@ -6,31 +6,37 @@
 	<SimDescriptor Name="AlignementEvil1" Class="Alignement">
 		<SimModifier Operator="Addition" Target="Speed" Value="1" Path="Player" />
 		<SimModifier Operator="Addition" Target="MaxHealth" Value="-1" Path="Player" />
+		<SimModifier Operator="Addition" Target="Attack" Value="1" Path="Player" />
 	</SimDescriptor>
 
 	<SimDescriptor Name="AlignementEvil2" Class="Alignement">
 		<SimModifier Operator="Addition" Target="Speed" Value="2" Path="Player" />
 		<SimModifier Operator="Addition" Target="MaxHealth" Value="-2" Path="Player" />
+		<SimModifier Operator="Addition" Target="Attack" Value="2" Path="Player" />
 	</SimDescriptor>
 	
 	<SimDescriptor Name="AlignementEvil3" Class="Alignement">
-		<SimModifier Operator="Addition" Target="Speed" Value="1" Path="Player" />
-		<SimModifier Operator="Addition" Target="MaxHealth" Value="-1" Path="Player" />
+		<SimModifier Operator="Addition" Target="Speed" Value="3" Path="Player" />
+		<SimModifier Operator="Addition" Target="MaxHealth" Value="-3" Path="Player" />
+		<SimModifier Operator="Addition" Target="Attack" Value="3" Path="Player" />
 	</SimDescriptor>
 	
 	<SimDescriptor Name="AlignementGood1" Class="Alignement">
 		<SimModifier Operator="Addition" Target="MaxHealth" Value="1" Path="Player" />
 		<SimModifier Operator="Addition" Target="Speed" Value="-1" Path="Player" />
+		<SimModifier Operator="Addition" Target="Defence" Value="1" Path="Player" />
 	</SimDescriptor>
 
 	<SimDescriptor Name="AlignementGood2" Class="Alignement">
 		<SimModifier Operator="Addition" Target="MaxHealth" Value="2" Path="Player" />
 		<SimModifier Operator="Addition" Target="Speed" Value="-2" Path="Player" />
+		<SimModifier Operator="Addition" Target="Defence" Value="2" Path="Player" />
 	</SimDescriptor>
 	
 	<SimDescriptor Name="AlignementGood3" Class="Alignement">
-		<SimModifier Operator="Addition" Target="MaxHealth" Value="1" Path="Player" />
-		<SimModifier Operator="Addition" Target="Speed" Value="-1" Path="Player" />
+		<SimModifier Operator="Addition" Target="MaxHealth" Value="3" Path="Player" />
+		<SimModifier Operator="Addition" Target="Speed" Value="-3" Path="Player" />
+		<SimModifier Operator="Addition" Target="Defence" Value="3" Path="Player" />
 	</SimDescriptor>
 
 	<!-- Difficulty -->
