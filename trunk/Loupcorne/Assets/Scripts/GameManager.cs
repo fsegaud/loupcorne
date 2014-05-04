@@ -55,9 +55,27 @@ public class GameManager : MonoBehaviour
         }
 
         Transform player = _um.player.transform;
-        transform.position = playerSpawn.position;
+        player.transform.position = playerSpawn.position;
         UnitsManager.AllGuardRemoved += ArenaCompleted;
+
+        this.ApplyDifficulty(1);
 	}
+
+    private void ApplyDifficulty(int difficulty)
+    {
+        LoupCorne.Framework.IDatatable<LoupCorne.Framework.SimDescriptor> descriptorDatatable
+            = LoupCorne.Framework.Database.Instance.GetDatatable<LoupCorne.Framework.SimDescriptor>();
+
+        LoupCorne.Framework.SimDescriptor difficultyDescriptor = descriptorDatatable.GetElement(string.Format("Difficulty{0}", difficulty));
+
+        List<Entity> entities = new List<Entity>();
+        entities.AddRange(this._um.peons.ToArray());
+        entities.AddRange(this._um.guards.ToArray());
+        
+        entities.ForEach(e => e.DifficultyDescriptor = difficultyDescriptor);
+        this._um.player.AddDescriptor(difficultyDescriptor);
+        this._um.player.Refresh();
+    }
 	
 	void Update () 
     {

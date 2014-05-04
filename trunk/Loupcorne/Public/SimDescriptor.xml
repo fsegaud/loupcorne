@@ -42,6 +42,9 @@
 	<!-- Difficulty -->
 
 	<SimDescriptor Name="Difficulty1" Class="Difficulty">
+	</SimDescriptor>
+
+	<SimDescriptor Name="Difficulty2" Class="Difficulty">
 		<SimModifier Operator="Percent" Target="Speed" Value=".1" Path="Foe" />
 		<SimModifier Operator="Percent" Target="MaxHealth" Value=".2" Path="Foe" />
 		<SimModifier Operator="Percent" Target="Attack" Value=".1" Path="Foe" />
