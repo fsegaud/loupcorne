@@ -32,11 +32,17 @@ public class Peon : Entity
 
 	void Update () 
 	{
+        animation["walk"].speed = (float)this.GetPropertyValue(SimProperties.Speed) / 3;
+        animation["protect"].weight = 2;
+        animation["protect"].speed = 2;
+        animation["protect"].blendMode = AnimationBlendMode.Additive;
+
         _navAgent.speed = (float)this.GetPropertyValue(SimProperties.Speed);
 
 		switch(_state)
 		{
 		case PeonStates.IDLE:
+                animation.CrossFade("idle");
 			float moveX = Random.Range(-moveMax, moveMax);
 			float moveZ = Random.Range(-moveMax, moveMax);
 			_target = new Vector3(moveX, transform.position.y, moveZ);
@@ -49,6 +55,7 @@ public class Peon : Entity
             
 			break;
         case PeonStates.MOVING:
+            animation.CrossFade("walk");
             if (_navAgent.remainingDistance == 0)
             {
                 _navAgent.Stop();
@@ -56,6 +63,7 @@ public class Peon : Entity
             }
 			break;
 		case PeonStates.ATTACKED:
+            animation.Play("protect");
             _navAgent.Stop();
 			break;
 		}
