@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-class Skill
+public class Skill
 {
     public enum Alignment
     {

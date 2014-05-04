@@ -18,8 +18,6 @@ public class Peon : Entity
 
 	protected override void Start () 
 	{
-        base.Start();
-
 		_um = UnitsManager.Instance;
 		_state = PeonStates.IDLE;
 
@@ -28,6 +26,8 @@ public class Peon : Entity
         // Apply simulation object.
         this.SetSimObject(LoupCorne.Framework.Database.Instance.GetDatatable<LoupCorne.Framework.SimObject>().GetElement("Peon"));
         this.Refresh();
+
+        base.Start();
 	}
 
 	void Update () 

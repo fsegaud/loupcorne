@@ -43,7 +43,8 @@ public class UnitsManager : Singleton<UnitsManager>
             if (peons.Contains(p))
             {
                 peons.Remove(p);
-                PeonRemoved(p);
+                if(PeonRemoved != null)
+                    PeonRemoved(p);
             }
         }
 	}

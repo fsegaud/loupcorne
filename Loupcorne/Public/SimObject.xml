@@ -9,6 +9,7 @@
 	  <SimProperty Name="CooldownReductionRatio" BaseValue="1" />
 	  <SimProperty Name="Alignement" BaseValue="0" />
 	  <SimProperty Name="DamageReductionRatio" BaseValue="1" />
+	  <SimProperty Name="AttackRange" BaseValue="3" />
 	</SimObject>
 
 	<SimObject Name="Peon" Class="Friend">
@@ -20,9 +21,10 @@
 
 	<SimObject Name="Guard" Class="Foe">
 	  <SimProperty Name="MaxHealth" BaseValue="10" />
-	  <SimProperty Name="Speed" BaseValue="3.5" />
+	  <SimProperty Name="Speed" BaseValue="5" />
 	  <SimProperty Name="Attack" BaseValue="10" />
 	  <SimProperty Name="Defence" BaseValue="10" />
+	   <SimProperty Name="AttackRange" BaseValue="2" />
 	  <SimProperty Name="AlignmentRewardOnDeath" BaseValue="1" />
 	</SimObject>
 
