@@ -992,9 +992,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2165b69f24f57c74ea5256b460d40625, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _healthBarUpOffset: 3
   _health: 10
-  displacementSpeed: 10
-  animationSpeed: 2
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -21,8 +21,10 @@ public class Guard : Entity
 
     private NavMeshAgent _navAgent;
 	
-	void Start () 
+	protected override void Start () 
 	{
+        base.Start();
+
 		_um = UnitsManager.Instance;
 		_state = GuardStates.IDLE;
 
