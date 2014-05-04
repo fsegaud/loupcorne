@@ -83,7 +83,7 @@ public class Player : Entity
 	void Update () 
     {
         //Animation Speed
-        animation["idle"].speed = (float)this.GetPropertyValue(SimProperties.Speed) / 5f;
+       // animation["idle"].speed = (float)this.GetPropertyValue(SimProperties.Speed) / 5f;
         animation["run"].speed = (float)this.GetPropertyValue(SimProperties.Speed) / 5f;
 
         //Player Rotation
