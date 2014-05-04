@@ -1,33 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfSkillEffectElement xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 
-	<SkillEffectElement Name="SkillEffectTest1" Type="Missile" Prefab="SkillEffect/Missile">
+	<SkillEffectElement Name="SkillEffectGood1" Type="Aoe" Prefab="SkillEffect/Aoe">
+		<Title>Aoe Good</Title>
+		<Tags>Peon</Tags>
+		<Damage>-1.5</Damage>
+		<Radius>3</Radius>
+		<Duration>1.5</Duration>
+		<AlignementGainOnUse>1</AlignementGainOnUse>
+	</SkillEffectElement>
+
+	<SkillEffectElement Name="SkillEffectGood2" Type="Missile" Prefab="SkillEffect/Missile">
+		<Title>Test Missile</Title>
+		<Tags>Guard</Tags>
+		<Speed>15</Speed>
+		<Damage>1</Damage>
+		<DestroyOnHitSuccess>true</DestroyOnHitSuccess>
+		<DestroyOnHitFailure>true</DestroyOnHitFailure>
+		<AlignementGainOnUse>1</AlignementGainOnUse>
+		<Gfx>Gfx/Explosion01</Gfx>
+	</SkillEffectElement>
+	
+	<SkillEffectElement Name="SkillEffectGood3" Type="Buff" Prefab="SkillEffect/Buff">
+		<Title>Test Buff</Title>
+		<Tags>King</Tags>
+		<BuffDescriptor>SkillEffectGood</BuffDescriptor>
+		<Duration>5</Duration>
+		<AlignementGainOnUse>1</AlignementGainOnUse>
+		<Gfx>Gfx/Explosion01</Gfx>
+	</SkillEffectElement>
+	
+	<SkillEffectElement Name="SkillEffectEvil1" Type="Missile" Prefab="SkillEffect/Missile">
 		<Title>Test Missile</Title>
 		<Tags>Guard,Peon</Tags>
-		<Speed>8</Speed>
-		<Damage>6</Damage>
+		<Speed>17.5</Speed>
+		<Damage>2</Damage>
 		<DestroyOnHitSuccess>true</DestroyOnHitSuccess>
 		<DestroyOnHitFailure>true</DestroyOnHitFailure>
 		<AlignementGainOnUse>-1</AlignementGainOnUse>
 		<Gfx>Gfx/Explosion01</Gfx>
 	</SkillEffectElement>
 
-	<SkillEffectElement Name="SkillEffectTest2" Type="Aoe" Prefab="SkillEffect/Aoe">
-		<Title>Test Aoe</Title>
-		<Tags>Guard</Tags>
-		<Damage>2.5</Damage>
-		<Radius>10</Radius>
-		<Duration>5</Duration>
-	</SkillEffectElement>
-
-	<SkillEffectElement Name="SkillEffectTest3" Type="Buff" Prefab="SkillEffect/Buff">
+	<SkillEffectElement Name="SkillEffectEvil2" Type="Buff" Prefab="SkillEffect/Buff">
 		<Title>Test Buff</Title>
 		<Tags>King</Tags>
-		<Descriptor>SkillEffectTest3Passive</Descriptor>
-		<BuffDescriptor>SkillEffectTest3Active</BuffDescriptor>
+		<Descriptor>SkillEffectEvil</Descriptor>
 		<Duration>5</Duration>
 		<AlignementGainOnUse>1</AlignementGainOnUse>
 		<Gfx>Gfx/Explosion01</Gfx>
 	</SkillEffectElement>
+	
+	<SkillEffectElement Name="SkillEffectEvil3" Type="Aoe" Prefab="SkillEffect/Aoe">
+		<Title>Test Aoe</Title>
+		<Tags>Guard,Peon</Tags>
+		<Damage>1</Damage>
+		<Radius>10</Radius>
+		<Duration>0.75</Duration>
+	</SkillEffectElement>
+
+	
 
 </ArrayOfSkillEffectElement>
