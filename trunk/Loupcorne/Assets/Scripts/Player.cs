@@ -12,20 +12,12 @@ public class Player : Entity
     }
     private PlayerState _state;
 
-    [SerializeField] private float displacementSpeed = 10f;
-    [SerializeField] private float animationSpeed = 2f;
-
-
-
     private readonly List<Skill> skills = new List<Skill>();
     private int activeSkill = 0;
 
 	void Start () 
     {
         _state = PlayerState.IDLE;
-
-        animation["idle"].speed = animationSpeed;
-        animation["run"].speed = animationSpeed;
 
         // Apply simulation object.
         this.SetSimObject(LoupCorne.Framework.Database.Instance.GetDatatable<LoupCorne.Framework.SimObject>().GetElement("King"));
@@ -74,10 +66,14 @@ public class Player : Entity
 
 	void Update () 
     {
+        //Animation Speed
+        animation["idle"].speed = (float)this.GetPropertyValue(SimProperties.Speed) / 5f;
+        animation["run"].speed = (float)this.GetPropertyValue(SimProperties.Speed) / 5f;
+
         //Player Rotation
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
+        RaycastHit[] hits = Physics.RaycastAll(ray);
+       foreach(RaycastHit hit in hits)
         {
             if (hit.collider.gameObject.CompareTag("Ground"))
             {
@@ -100,7 +96,7 @@ public class Player : Entity
                 animation.CrossFade("run");
                 Vector3 inputs = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
                 inputs.Normalize();
-                inputs *= displacementSpeed * Time.deltaTime;
+                inputs *= (float)this.GetPropertyValue(SimProperties.Speed) * Time.deltaTime;
                 transform.position += inputs; 
                 break;
         }
@@ -132,7 +128,7 @@ public class Player : Entity
             RaycastHit[] hits = Physics.RaycastAll(ray);
             foreach (RaycastHit hit in hits)
             {
-                if (hit.collider.gameObject.name == "Ground")
+                if (hit.collider.gameObject.CompareTag("Ground"))
                 {
                     Vector3 worldMousePos = new Vector3(hit.point.x, 1, hit.point.z);
                     this.skills[this.activeSkill].Cast(this, worldMousePos);

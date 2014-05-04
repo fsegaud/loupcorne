@@ -12,7 +12,6 @@ public class Peon : Entity
 	private PeonStates _state;
 	private UnitsManager _um;
 	[SerializeField] private float moveMax;
-	[SerializeField] private float speed;
 	private Vector3 _target;
 
     private NavMeshAgent _navAgent;
@@ -26,10 +25,13 @@ public class Peon : Entity
 
         // Apply simulation object.
         this.SetSimObject(LoupCorne.Framework.Database.Instance.GetDatatable<LoupCorne.Framework.SimObject>().GetElement("Peon"));
+        this.Refresh();
 	}
 
 	void Update () 
 	{
+        _navAgent.speed = (float)this.GetPropertyValue(SimProperties.Speed);
+
 		switch(_state)
 		{
 		case PeonStates.IDLE:

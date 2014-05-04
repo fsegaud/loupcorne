@@ -13,7 +13,6 @@ public class Entity : SimObjectWrapper
 	
 	void Update () 
     {
-	    //TODO inputs ?
 	}
 
 	public virtual void Hit(float hitStrength)
