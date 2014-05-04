@@ -37,11 +37,16 @@ public class Peon : Entity
 		switch(_state)
 		{
 		case PeonStates.IDLE:
-			float moveX = Random.Range(0, moveMax);
-			float moveZ = Random.Range(0, moveMax);
+			float moveX = Random.Range(-moveMax, moveMax);
+			float moveZ = Random.Range(-moveMax, moveMax);
 			_target = new Vector3(moveX, transform.position.y, moveZ);
-            _navAgent.SetDestination(_target);
-            _state = PeonStates.MOVING;
+            NavMeshPath path = new NavMeshPath();
+            if (NavMesh.CalculatePath(transform.position, _target, -1, path))
+            {
+                _navAgent.SetDestination(_target);
+                _state = PeonStates.MOVING;
+            }
+            
 			break;
         case PeonStates.MOVING:
             if (_navAgent.remainingDistance == 0)

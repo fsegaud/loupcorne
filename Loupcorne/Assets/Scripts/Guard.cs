@@ -32,7 +32,7 @@ public class Guard : Entity
 
         _navAgent = GetComponent<NavMeshAgent>();
 
-		UnitsManager.OnRemovePeon += OnPeonRemoved;
+		UnitsManager.PeonRemoved += OnPeonRemoved;
 
         // Apply simulation object.
         this.SetSimObject(LoupCorne.Framework.Database.Instance.GetDatatable<LoupCorne.Framework.SimObject>().GetElement("Guard"));
@@ -134,7 +134,7 @@ public class Guard : Entity
 
 	void OnDisable()
 	{
-		UnitsManager.OnRemovePeon -= OnPeonRemoved;
+		UnitsManager.PeonRemoved -= OnPeonRemoved;
 	}
 
     public override void Kill()
