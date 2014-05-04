@@ -48,7 +48,7 @@ class SkillEffectAoe : SkillEffect
 
         // Do Damages.
         targets.Where(t => Vector3.Distance(transform.position, t.transform.position) <= this.SkillEffectElement.Radius).ToList()
-            .ForEach(t => t.Hit(this.SkillEffectElement.Damage * Time.deltaTime));
+            .ForEach(t => t.Hit(this.ComputeDamage(t) * Time.deltaTime));
 
         // Check for elapsed timer.
         if (Time.time >= this.startTime + this.SkillEffectElement.Duration)

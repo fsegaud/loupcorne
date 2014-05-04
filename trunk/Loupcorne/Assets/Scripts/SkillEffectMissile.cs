@@ -28,7 +28,7 @@ public class SkillEffectMissile : SkillEffect
             System.Type type = entity.GetType();
             if (this.SkillEffectElement.Tags.Split(',').Contains(type.Name))
             {
-                entity.Hit(this.SkillEffectElement.Damage);
+                entity.Hit(this.ComputeDamage(entity));
                 success = true;
 
                 if (!string.IsNullOrEmpty(this.SkillEffectElement.Gfx))
