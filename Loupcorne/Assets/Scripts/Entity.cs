@@ -8,11 +8,29 @@ public class Entity : SimObjectWrapper
     
     protected float _maxHealth;
 
+    public LoupCorne.Framework.SimDescriptor DifficultyDescriptor
+    {
+        get;
+        set;
+    }
+
 	protected virtual void Start () 
     {
         _health = (float)this.GetPropertyValue(SimProperties.MaxHealth);
         this._maxHealth = this._health;
         Debug.Log(this._health + "/" + this._maxHealth);
+
+        // Apply difficulty.
+        if (this.DifficultyDescriptor != null)
+        {
+            this.AddDescriptor(this.DifficultyDescriptor);
+            this.Refresh();
+        }
+
+        if (this is Player)
+        {
+            Debug.LogWarning("Player.base.Start");
+        }
 	}
 	
 	void Update () 
