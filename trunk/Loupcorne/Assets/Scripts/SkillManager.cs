@@ -45,7 +45,21 @@ class SkillManager
         this.unlockedSkills.AddRange(this.lockedSkills);
         if (SkillManager.OnSkillUnlocked != null)
         {
-            this.unlockedSkills.ForEach(s => SkillManager.OnSkillUnlocked(s));
+            this.unlockedSkills.ForEach(s => SkillManager.OnSkillUnlocked.Invoke(s));
+        }
+    }
+
+    private void UnlockSkill(int rank, Skill.Alignment alignment)
+    {
+        string skillName = string.Format("SkillEffect{0}{1}", alignment, rank);
+        Skill skill = this.lockedSkills.SingleOrDefault(s => s.SkillEffectName == skillName);
+        if (skill != null)
+        {
+            this.unlockedSkills.Add(skill);
+            if (SkillManager.OnSkillUnlocked != null)
+            {
+                SkillManager.OnSkillUnlocked.Invoke(skill);
+            }
         }
     }
 }
