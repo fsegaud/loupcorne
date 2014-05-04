@@ -75,7 +75,7 @@ public class Player : Entity
             string.Join("\n", this.GetTags()));
 
         GUI.Box(new Rect(10, 10, 200, 25), string.Empty);
-        GUI.Label(new Rect(10, 10, 200, 25), string.Format("ActiveSkill={0}", SkillManager.Instance.Skills[this.activeSkill].SkillEffectName));
+        GUI.Label(new Rect(10, 10, 200, 25), string.Format("ActiveSkill={0} ({1})", SkillManager.Instance.Skills[this.activeSkill].SkillEffectName, SkillManager.Instance.Skills[this.activeSkill].Timer.ToString("0.0")));
 
         GUI.Box(new Rect(10, 40, 200, 200), string.Empty);
         GUI.Label(new Rect(10, 40, 200, 200), debugInfo);

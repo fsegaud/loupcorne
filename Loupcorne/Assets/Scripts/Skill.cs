@@ -16,8 +16,31 @@ class Skill
         set;
     }
 
-    public void Cast(Player player, UnityEngine.Vector3 target)
+    private float cooldown = -1f;
+    private float lastCast = 0f;
+    public float Timer
     {
+        get
+        {
+            if (this.cooldown < 0f)
+            {
+                SkillEffectElement element = LoupCorne.Framework.Database.Instance.GetDatatable<SkillEffectElement>().GetElement(this.SkillEffectName);
+                this.cooldown = element.Cooldown;
+            }
+
+            return Mathf.Clamp(this.lastCast - UnityEngine.Time.time + this.cooldown, 0f, float.MaxValue);
+        }
+    }
+
+    public bool Cast(Player player, UnityEngine.Vector3 target)
+    {
+        if(this.Timer > float.Epsilon)
+        {
+            return false;
+        }
+
+        this.lastCast = UnityEngine.Time.time;
+
         SkillEffectElement element = LoupCorne.Framework.Database.Instance.GetDatatable<SkillEffectElement>().GetElement(this.SkillEffectName);
         string typename = string.Format("SkillEffect{0}", element.Type);
         Type type = Type.GetType(typename);
@@ -48,5 +71,7 @@ class Skill
         double currentAlignement = player.GetPropertyValue(SimProperties.Alignement);
         player.SetPropertyBaseValue(SimProperties.Alignement, currentAlignement + element.AlignementGainOnUse);
         player.Refresh();
+
+        return true;
     }
 }

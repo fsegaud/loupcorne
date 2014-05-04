@@ -40,13 +40,6 @@ class SkillManager
         LoupCorne.Framework.IDatatable<SkillEffectElement> skillDatatable = LoupCorne.Framework.Database.Instance.GetDatatable<SkillEffectElement>();
         List<string> skillEffectEllementNames = skillDatatable.GetElements().Select(e => e.Name).ToList();
         skillEffectEllementNames.ForEach(n => this.lockedSkills.Add(new Skill() { SkillEffectName = n }));
-
-        //// For now, all skills are considered unlocked.
-        //this.unlockedSkills.AddRange(this.lockedSkills);
-        //if (SkillManager.OnSkillUnlocked != null)
-        //{
-        //    this.unlockedSkills.ForEach(s => SkillManager.OnSkillUnlocked.Invoke(s));
-        //}
     }
 
     public void UnlockSkill(int rank, Skill.Alignment alignment)
