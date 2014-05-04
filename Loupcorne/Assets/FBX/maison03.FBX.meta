@@ -4,10 +4,134 @@ ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
     100000: //RootNode
+    100002: barriere
+    100004: barriere45
+    100006: barriere90
+    100008: brasero
+    100010: cabane
+    100012: chariotte
+    100014: chariotte02
+    100016: Cylinder001
+    100018: doorsgate
+    100020: feu
+    100022: lampadaire
+    100024: maison01
+    100026: maison02
+    100028: maison03
+    100030: maison04
+    100032: moulin
+    100034: palissade
+    100036: rempart
+    100038: sol
+    100040: souche
+    100042: tono
+    100044: tour003
+    100046: tour004
+    100048: tour01
+    100050: voile moulin
     400000: //RootNode
+    400002: barriere
+    400004: barriere45
+    400006: barriere90
+    400008: brasero
+    400010: cabane
+    400012: chariotte
+    400014: chariotte02
+    400016: Cylinder001
+    400018: doorsgate
+    400020: feu
+    400022: lampadaire
+    400024: maison01
+    400026: maison02
+    400028: maison03
+    400030: maison04
+    400032: moulin
+    400034: palissade
+    400036: rempart
+    400038: sol
+    400040: souche
+    400042: tono
+    400044: tour003
+    400046: tour004
+    400048: tour01
+    400050: voile moulin
     2300000: //RootNode
+    2300002: barriere
+    2300004: barriere45
+    2300006: barriere90
+    2300008: brasero
+    2300010: cabane
+    2300012: chariotte
+    2300014: chariotte02
+    2300016: Cylinder001
+    2300018: doorsgate
+    2300020: feu
+    2300022: lampadaire
+    2300024: maison01
+    2300026: maison02
+    2300028: maison03
+    2300030: maison04
+    2300032: moulin
+    2300034: palissade
+    2300036: rempart
+    2300038: sol
+    2300040: souche
+    2300042: tono
+    2300044: tour003
+    2300046: tour004
+    2300048: tour01
+    2300050: voile moulin
     3300000: //RootNode
+    3300002: barriere
+    3300004: barriere45
+    3300006: barriere90
+    3300008: brasero
+    3300010: cabane
+    3300012: chariotte
+    3300014: chariotte02
+    3300016: Cylinder001
+    3300018: doorsgate
+    3300020: feu
+    3300022: lampadaire
+    3300024: maison01
+    3300026: maison02
+    3300028: maison03
+    3300030: maison04
+    3300032: moulin
+    3300034: palissade
+    3300036: rempart
+    3300038: sol
+    3300040: souche
+    3300042: tono
+    3300044: tour003
+    3300046: tour004
+    3300048: tour01
+    3300050: voile moulin
     4300000: maison03
+    4300002: maison02
+    4300004: cabane
+    4300006: maison01
+    4300008: palissade
+    4300010: barriere
+    4300012: tono
+    4300014: lampadaire
+    4300016: brasero
+    4300018: sol
+    4300020: feu
+    4300022: souche
+    4300024: chariotte
+    4300026: chariotte02
+    4300028: rempart
+    4300030: barriere45
+    4300032: barriere90
+    4300034: tour01
+    4300036: tour003
+    4300038: doorsgate
+    4300040: tour004
+    4300042: maison04
+    4300044: moulin
+    4300046: voile moulin
+    4300048: Cylinder001
     9500000: //RootNode
   materials:
     importMaterials: 1
