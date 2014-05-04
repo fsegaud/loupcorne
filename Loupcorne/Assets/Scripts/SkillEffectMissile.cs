@@ -47,7 +47,6 @@ public class SkillEffectMissile : SkillEffect
         if((success && this.SkillEffectElement.DestroyOnHitSuccess)
             || (!success && this.SkillEffectElement.DestroyOnHitFailure))
         {
-            Debug.Log("DESTROY");
             GameObject.Destroy(this.gameObject);
         }
     }

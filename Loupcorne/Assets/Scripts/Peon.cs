@@ -23,7 +23,9 @@ public class Peon : Entity
 		_state = PeonStates.IDLE;
 
         _navAgent = GetComponent<NavMeshAgent>();
-	
+
+        // Apply simulation object.
+        this.SetSimObject(LoupCorne.Framework.Database.Instance.GetDatatable<LoupCorne.Framework.SimObject>().GetElement("Peon"));
 	}
 
 	void Update () 

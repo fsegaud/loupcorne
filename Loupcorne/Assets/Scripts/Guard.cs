@@ -33,6 +33,8 @@ public class Guard : Entity
 
 		UnitsManager.OnRemovePeon += OnPeonRemoved;
 
+        // Apply simulation object.
+        this.SetSimObject(LoupCorne.Framework.Database.Instance.GetDatatable<LoupCorne.Framework.SimObject>().GetElement("Guard"));
 	}
 
 	void Update () 

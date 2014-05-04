@@ -42,7 +42,6 @@ class SkillEffectBuff : SkillEffect
         // Check for elapsed timer.
         if (Time.time >= this.startTime + this.SkillEffectElement.Duration)
         {
-            Debug.Log("DESTROY BUFF");
             GameObject.Destroy(this.gameObject);
         }
     }
