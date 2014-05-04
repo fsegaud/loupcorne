@@ -46,6 +46,7 @@
 
         public void AddDescriptor(SimDescriptor descriptor)
         {
+            this.Descriptors.RemoveAll(d => d.Class == descriptor.Class);
             this.Descriptors.Add(descriptor);
         }
 
