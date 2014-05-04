@@ -12,7 +12,8 @@ public class Player : Entity
     }
     private PlayerState _state;
 
-    private readonly List<Skill> skills = new List<Skill>();
+    //private readonly List<Skill> lockedSkills = new List<Skill>();
+    //private readonly List<Skill> skills = new List<Skill>();
     private int activeSkill = 0;
 
 	protected override void Start () 
@@ -24,25 +25,36 @@ public class Player : Entity
         // Apply simulation object.
         this.SetSimObject(LoupCorne.Framework.Database.Instance.GetDatatable<LoupCorne.Framework.SimObject>().GetElement("King"));
 
-        // Add all skills to skill list.
-        LoupCorne.Framework.IDatatable<SkillEffectElement> skillDatatable = LoupCorne.Framework.Database.Instance.GetDatatable<SkillEffectElement>();
-        List<string> skillEffectEllementNames = skillDatatable.GetElements().Select(e => e.Name).ToList();
-        skillEffectEllementNames.ForEach(n => this.skills.Add(new Skill() { SkillEffectName = n }));
+        //// Add all skills to locked skill list.
+        //LoupCorne.Framework.IDatatable<SkillEffectElement> skillDatatable = LoupCorne.Framework.Database.Instance.GetDatatable<SkillEffectElement>();
+        //List<string> skillEffectEllementNames = skillDatatable.GetElements().Select(e => e.Name).ToList();
+        //skillEffectEllementNames.ForEach(n => this.lockedSkills.Add(new Skill() { SkillEffectName = n }));
 
-        // Apply all skill's simulation descriptors.
-        LoupCorne.Framework.IDatatable<LoupCorne.Framework.SimDescriptor> descriptorDatatable = LoupCorne.Framework.Database.Instance.GetDatatable<LoupCorne.Framework.SimDescriptor>();
-        foreach (Skill s in this.skills)
-        {
-            string descriptorName = skillDatatable.GetElement(s.SkillEffectName).Descriptor;
-            if (!string.IsNullOrEmpty(descriptorName))
-            {
-                LoupCorne.Framework.SimDescriptor descriptor = descriptorDatatable.GetElement(descriptorName);
-                this.AddDescriptor(descriptor);
-            }
-        }
+        //// For now, all skills are considered unlocked.
+        //this.skills.AddRange(this.lockedSkills);
+
+        //// Apply all skill's simulation descriptors.
+        //LoupCorne.Framework.IDatatable<LoupCorne.Framework.SimDescriptor> descriptorDatatable = LoupCorne.Framework.Database.Instance.GetDatatable<LoupCorne.Framework.SimDescriptor>();
+        //foreach (Skill s in this.skills)
+        //{
+        //    string descriptorName = skillDatatable.GetElement(s.SkillEffectName).Descriptor;
+        //    if (!string.IsNullOrEmpty(descriptorName))
+        //    {
+        //        LoupCorne.Framework.SimDescriptor descriptor = descriptorDatatable.GetElement(descriptorName);
+        //        this.AddDescriptor(descriptor);
+        //    }
+        //}
+
+        SkillManager.OnSkillUnlocked += this.SkillManager_OnSkillUnlocked;
+        SkillManager sm = SkillManager.Instance; // Hack to init.
 
         this.Refresh();
 	}
+
+    void Destroy()
+    {
+        SkillManager.OnSkillUnlocked -= this.SkillManager_OnSkillUnlocked;
+    }
 
     protected override void OnGUI()
     {
@@ -61,7 +73,7 @@ public class Player : Entity
             string.Join("\n", this.GetTags()));
 
         GUI.Box(new Rect(10, 10, 200, 25), string.Empty);
-        GUI.Label(new Rect(10, 10, 200, 25), string.Format("ActiveSkill={0}", this.skills[this.activeSkill].SkillEffectName));
+        GUI.Label(new Rect(10, 10, 200, 25), string.Format("ActiveSkill={0}", SkillManager.Instance.Skills[this.activeSkill].SkillEffectName));
 
         GUI.Box(new Rect(10, 40, 200, 200), string.Empty);
         GUI.Label(new Rect(10, 40, 200, 200), debugInfo);
@@ -118,9 +130,9 @@ public class Player : Entity
 
             if (this.activeSkill < 0)
             {
-                this.activeSkill = this.skills.Count - 1;
+                this.activeSkill = SkillManager.Instance.Skills.Count - 1;
             }
-            else if (this.activeSkill > this.skills.Count - 1)
+            else if (this.activeSkill > SkillManager.Instance.Skills.Count - 1)
             {
                 this.activeSkill = 0;
             }
@@ -135,9 +147,23 @@ public class Player : Entity
                 if (hit.collider.gameObject.CompareTag("Ground"))
                 {
                     Vector3 worldMousePos = new Vector3(hit.point.x, 1, hit.point.z);
-                    this.skills[this.activeSkill].Cast(this, worldMousePos);
+                    SkillManager.Instance.Skills[this.activeSkill].Cast(this, worldMousePos);
                 }
             }
+        }
+    }
+
+    private void SkillManager_OnSkillUnlocked(Skill skill)
+    {
+        LoupCorne.Framework.IDatatable<SkillEffectElement> skillDatatable = LoupCorne.Framework.Database.Instance.GetDatatable<SkillEffectElement>();
+        LoupCorne.Framework.IDatatable<LoupCorne.Framework.SimDescriptor> descriptorDatatable = LoupCorne.Framework.Database.Instance.GetDatatable<LoupCorne.Framework.SimDescriptor>();
+
+        string descriptorName = skillDatatable.GetElement(skill.SkillEffectName).Descriptor;
+        if (!string.IsNullOrEmpty(descriptorName))
+        {
+            LoupCorne.Framework.SimDescriptor descriptor = descriptorDatatable.GetElement(descriptorName);
+            this.AddDescriptor(descriptor);
+            this.Refresh();
         }
     }
 }
