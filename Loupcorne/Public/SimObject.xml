@@ -26,7 +26,7 @@
 	  <SimProperty Name="Attack" BaseValue="10" />
 	  <SimProperty Name="Defence" BaseValue="10" />
 	   <SimProperty Name="AttackRange" BaseValue="2" />
-	  <SimProperty Name="AlignmentRewardOnDeath" BaseValue="1" />
+	  <SimProperty Name="AlignmentRewardOnDeath" BaseValue="0" />
 	</SimObject>
 
 </ArrayOfSimObject>
