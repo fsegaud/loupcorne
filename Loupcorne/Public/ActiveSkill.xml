@@ -46,7 +46,7 @@
 		<Tags>King</Tags>
 		<Descriptor>SkillEffectEvil</Descriptor>
 		<Duration>5</Duration>
-		<AlignementGainOnUse>1</AlignementGainOnUse>
+		<AlignementGainOnUse>-1</AlignementGainOnUse>
 		<Gfx>Gfx/Explosion01</Gfx>
 	</SkillEffectElement>
 	
@@ -56,8 +56,7 @@
 		<Damage>1</Damage>
 		<Radius>10</Radius>
 		<Duration>0.75</Duration>
+		<AlignementGainOnUse>-1</AlignementGainOnUse>
 	</SkillEffectElement>
-
-	
 
 </ArrayOfSkillEffectElement>
