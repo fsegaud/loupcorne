@@ -8,18 +8,20 @@
 		<Radius>3</Radius>
 		<Duration>1.5</Duration>
 		<AlignementGainOnUse>1</AlignementGainOnUse>
+		<Cooldown>10</Cooldown>
 	</SkillEffectElement>
 
 	<SkillEffectElement Name="SkillEffectGood2" Type="Missile" Prefab="SkillEffect/Missile">
 		<Title>Test Missile</Title>
 		<Tags>Guard</Tags>
 		<Speed>15</Speed>
-		<Damage>1</Damage>
+		<Damage>2</Damage>
 		<DestroyOnHitSuccess>true</DestroyOnHitSuccess>
 		<DestroyOnHitFailure>true</DestroyOnHitFailure>
 		<AlignementGainOnUse>1</AlignementGainOnUse>
 		<Gfx>Gfx/Explosion01</Gfx>
 		<Sfx>Sfx/Boom</Sfx>
+		<Cooldown>4</Cooldown>
 	</SkillEffectElement>
 	
 	<SkillEffectElement Name="SkillEffectGood3" Type="Buff" Prefab="SkillEffect/Buff">
@@ -29,18 +31,20 @@
 		<Duration>10</Duration>
 		<AlignementGainOnUse>1</AlignementGainOnUse>
 		<Gfx>Gfx/Explosion01</Gfx>
+		<Cooldown>20</Cooldown>
 	</SkillEffectElement>
 	
 	<SkillEffectElement Name="SkillEffectEvil1" Type="Missile" Prefab="SkillEffect/Missile">
 		<Title>Test Missile</Title>
 		<Tags>Guard,Peon</Tags>
 		<Speed>17.5</Speed>
-		<Damage>0.2</Damage>
+		<Damage>1</Damage>
 		<DestroyOnHitSuccess>true</DestroyOnHitSuccess>
 		<DestroyOnHitFailure>true</DestroyOnHitFailure>
 		<AlignementGainOnUse>-1</AlignementGainOnUse>
 		<Gfx>Gfx/Explosion01</Gfx>
 		<Sfx>Sfx/Boom</Sfx>
+		<Cooldown>3</Cooldown>
 	</SkillEffectElement>
 
 	<SkillEffectElement Name="SkillEffectEvil2" Type="Buff" Prefab="SkillEffect/Buff">
@@ -48,9 +52,10 @@
 		<Tags>King</Tags>
 		<BuffDescriptor>SkillEffectEvilActive</BuffDescriptor>
 		<Descriptor>SkillEffectEvilPassive</Descriptor>
-		<Duration>15</Duration>
+		<Duration>10</Duration>
 		<AlignementGainOnUse>-1</AlignementGainOnUse>
 		<Gfx>Gfx/Explosion01</Gfx>
+		<Cooldown>15</Cooldown>
 	</SkillEffectElement>
 	
 	<SkillEffectElement Name="SkillEffectEvil3" Type="Aoe" Prefab="SkillEffect/Aoe">
@@ -60,6 +65,7 @@
 		<Radius>10</Radius>
 		<Duration>0.75</Duration>
 		<AlignementGainOnUse>-1</AlignementGainOnUse>
+		<Cooldown>25</Cooldown>
 	</SkillEffectElement>
 
 </ArrayOfSkillEffectElement>
