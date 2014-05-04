@@ -15,6 +15,7 @@
 	  <SimProperty Name="MaxHealth" BaseValue="7" />
 	  <SimProperty Name="Speed" BaseValue="3.5" />
 	  <SimProperty Name="Defence" BaseValue="7" />
+	  <SimProperty Name="AlignmentRewardOnDeath" BaseValue="-1" />
 	</SimObject>
 
 	<SimObject Name="Guard" Class="Foe">
@@ -22,6 +23,7 @@
 	  <SimProperty Name="Speed" BaseValue="3.5" />
 	  <SimProperty Name="Attack" BaseValue="10" />
 	  <SimProperty Name="Defence" BaseValue="10" />
+	  <SimProperty Name="AlignmentRewardOnDeath" BaseValue="1" />
 	</SimObject>
 
 </ArrayOfSimObject>
