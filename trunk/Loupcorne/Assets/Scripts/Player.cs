@@ -76,8 +76,8 @@ public class Player : Entity
         //Animation Speed
         animation["hit"].weight = 2;
         animation["hit"].speed = 2;
-        animation["hit"].blendMode = AnimationBlendMode.Additive;
-        animation["run"].speed = (float)this.GetPropertyValue(SimProperties.Speed) / 5f;
+        //animation["hit"].blendMode = AnimationBlendMode.Additive;
+        animation["run"].speed = (float)this.GetPropertyValue(SimProperties.Speed) / 3f;
        
         //Player Rotation
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

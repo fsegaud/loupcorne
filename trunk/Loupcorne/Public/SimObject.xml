@@ -3,7 +3,7 @@
 
 	<SimObject Name="King" Class="Player">
 	  <SimProperty Name="MaxHealth" BaseValue="10" />
-	  <SimProperty Name="Speed" BaseValue="10" />
+	  <SimProperty Name="Speed" BaseValue="7" />
 	  <SimProperty Name="Attack" BaseValue="12" />
 	  <SimProperty Name="Defence" BaseValue="10" />
 	  <SimProperty Name="CooldownReductionRatio" BaseValue="1" />

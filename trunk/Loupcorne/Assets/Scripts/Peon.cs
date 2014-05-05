@@ -33,9 +33,9 @@ public class Peon : Entity
 	void Update () 
 	{
         animation["walk"].speed = (float)this.GetPropertyValue(SimProperties.Speed) / 3;
-        animation["protect"].weight = 2;
-        animation["protect"].speed = 2;
-        animation["protect"].blendMode = AnimationBlendMode.Additive;
+        //animation["protect"].weight = 2;
+        //animation["protect"].speed = 2;
+        //animation["protect"].blendMode = AnimationBlendMode.Additive;
 
         _navAgent.speed = (float)this.GetPropertyValue(SimProperties.Speed);
 
