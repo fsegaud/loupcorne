@@ -47,11 +47,11 @@ QualitySettings:
   - serializedVersion: 2
     name: Simple
     pixelLightCount: 1
-    shadows: 0
-    shadowResolution: 1
+    shadows: 1
+    shadowResolution: 2
     shadowProjection: 1
     shadowCascades: 1
-    shadowDistance: 20
+    shadowDistance: 50
     blendWeights: 2
     textureQuality: 0
     anisotropicTextures: 1

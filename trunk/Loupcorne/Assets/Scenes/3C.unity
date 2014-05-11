@@ -14748,16 +14748,16 @@ Light:
   m_Enabled: 1
   serializedVersion: 3
   m_Type: 1
-  m_Color: {r: .416522413, g: .299740463, b: .617647052, a: 1}
-  m_Intensity: .600000024
+  m_Color: {r: 1, g: .948884428, b: .735294104, a: 1}
+  m_Intensity: .949999988
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
-    m_Strength: 1
-    m_Bias: .0500000007
+    m_Strength: .5
+    m_Bias: .100000001
     m_Softness: 4
     m_SoftnessFade: 1
   m_Cookie: {fileID: 0}
@@ -14780,7 +14780,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 502766983}
-  m_LocalRotation: {x: .22798869, y: -.214487746, z: .206724495, w: .926974177}
+  m_LocalRotation: {x: .181575835, y: -.397159368, z: .248484686, w: .864609838}
   m_LocalPosition: {x: .488653183, y: 4.2001152, z: 4.9381566}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -28590,7 +28590,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 4b0647ae7a96a154191e82a431117143, type: 2}
+  - {fileID: 2100000, guid: 640389866e406f54c9a2baa9b30a83f6, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -30730,7 +30730,7 @@ SkinnedMeshRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 4b0647ae7a96a154191e82a431117143, type: 2}
+  - {fileID: 2100000, guid: 640389866e406f54c9a2baa9b30a83f6, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
