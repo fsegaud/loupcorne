@@ -14,7 +14,12 @@ public class Player : Entity
 
     //private readonly List<Skill> lockedSkills = new List<Skill>();
     //private readonly List<Skill> skills = new List<Skill>();
-    private int activeSkill = 0;
+
+    public int ActiveSkill
+    {
+        get;
+        private set;
+    }
 
 	protected override void Start () 
     {
@@ -51,7 +56,7 @@ public class Player : Entity
     {
         base.OnGUI();
 
-//#if UNITY_EDITOR
+#if UNITY_EDITOR && FALSE
         string debugInfo = string.Format(
             "MaxHealth={0}\nAtk={1}, Def={2}\nSpeed={3}\nCDR={4}, DmgR={5}\nAlignement={6}\n-----\n{7}",
             this.GetPropertyValue(SimProperties.MaxHealth),
@@ -68,7 +73,7 @@ public class Player : Entity
 
         GUI.Box(new Rect(10, 40, 200, 175), string.Empty);
         GUI.Label(new Rect(10, 40, 200, 175), debugInfo);
-//#endif
+#endif
     }
 
 	void Update () 
@@ -142,34 +147,34 @@ public class Player : Entity
         float scrollWheelOffset = Input.GetAxis("Mouse ScrollWheel");
         if (scrollWheelOffset != 0)
         {
-            this.activeSkill += scrollWheelOffset > 0 ? 1 : -1;
+            this.ActiveSkill += scrollWheelOffset > 0 ? 1 : -1;
 
-            if (this.activeSkill < 0)
+            if (this.ActiveSkill < 0)
             {
-                this.activeSkill = SkillManager.Instance.Skills.Count - 1;
+                this.ActiveSkill = SkillManager.Instance.Skills.Count - 1;
             }
-            else if (this.activeSkill > SkillManager.Instance.Skills.Count - 1)
+            else if (this.ActiveSkill > SkillManager.Instance.Skills.Count - 1)
             {
-                this.activeSkill = 0;
+                this.ActiveSkill = 0;
             }
         }
 
         // Web browser support
         if (Input.GetKeyDown(KeyCode.A))
         {
-            this.activeSkill--;
+            this.ActiveSkill--;
         }
         else if (Input.GetKeyDown(KeyCode.E))
         {
-            this.activeSkill++;
+            this.ActiveSkill++;
         }
-        if (this.activeSkill < 0)
+        if (this.ActiveSkill < 0)
         {
-            this.activeSkill = SkillManager.Instance.Skills.Count - 1;
+            this.ActiveSkill = SkillManager.Instance.Skills.Count - 1;
         }
-        else if (this.activeSkill > SkillManager.Instance.Skills.Count - 1)
+        else if (this.ActiveSkill > SkillManager.Instance.Skills.Count - 1)
         {
-            this.activeSkill = 0;
+            this.ActiveSkill = 0;
         }
 
         if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Space))
@@ -181,7 +186,7 @@ public class Player : Entity
                 if (hit.collider.gameObject.CompareTag("Ground"))
                 {
                     Vector3 worldMousePos = new Vector3(hit.point.x, 1, hit.point.z);
-                    SkillManager.Instance.Skills[this.activeSkill].Cast(this, worldMousePos);
+                    SkillManager.Instance.Skills[this.ActiveSkill].Cast(this, worldMousePos);
                 }
             }
         }

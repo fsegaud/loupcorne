@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class GameManager : MonoBehaviour 
+public class GameManager : Singleton<GameManager>
 {
     [SerializeField] private Transform playerSpawn;
     [SerializeField] private List<Transform> guardSpawns;
@@ -18,7 +18,8 @@ public class GameManager : MonoBehaviour
 
     private UnitsManager _um;
 
-    
+    public delegate void GameReadyEventHandler(GameManager sender);
+    public event GameReadyEventHandler OnGameReady;
 
 	void Start () 
     {
@@ -59,6 +60,11 @@ public class GameManager : MonoBehaviour
         UnitsManager.AllGuardRemoved += ArenaCompleted;
 
         this.ApplyDifficulty(1);
+
+        if (this.OnGameReady != null)
+        {
+            this.OnGameReady(this);
+        }
 	}
 
     private void ApplyDifficulty(int difficulty)

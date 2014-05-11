@@ -8,6 +8,22 @@ public class Entity : SimObjectWrapper
     
     protected float _maxHealth;
 
+    public float Health
+    {
+        get
+        {
+            return _health;
+        }
+    }
+
+    public float MaxHealth
+    {
+        get
+        {
+            return _maxHealth;
+        }
+    }
+
     public LoupCorne.Framework.SimDescriptor DifficultyDescriptor
     {
         get;
