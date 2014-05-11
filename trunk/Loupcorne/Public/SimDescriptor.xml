@@ -53,6 +53,16 @@
 		<SimModifier Operator="Percent" Target="MaxHealth" Value="-.1" Path="Friend" />
 		<SimModifier Operator="Percent" Target="Defence" Value="-.1" Path="Friend" />
 	</SimDescriptor>
+	
+	<SimDescriptor Name="Difficulty3" Class="Difficulty">
+		<SimModifier Operator="Percent" Target="Speed" Value=".2" Path="Foe" />
+		<SimModifier Operator="Percent" Target="MaxHealth" Value=".2" Path="Foe" />
+		<SimModifier Operator="Percent" Target="Attack" Value=".2" Path="Foe" />
+		<SimModifier Operator="Percent" Target="Defence" Value=".2" Path="Foe" />
+		<SimModifier Operator="Percent" Target="Speed" Value="-.2" Path="Friend" />
+		<SimModifier Operator="Percent" Target="MaxHealth" Value="-.2" Path="Friend" />
+		<SimModifier Operator="Percent" Target="Defence" Value="-.2" Path="Friend" />
+	</SimDescriptor>
 
 	<!-- Skills -->
 	

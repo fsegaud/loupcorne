@@ -6,8 +6,6 @@ public class GameManager : Singleton<GameManager>
 {
     [SerializeField] private Transform playerSpawn;
     [SerializeField] private List<Transform> guardSpawns;
-    //[SerializeField] private List<Transform> peonSpawns;
-    [SerializeField] private int difficulty;
     [SerializeField] private int maxGuards; 
     [SerializeField] private int maxPeons;
     [SerializeField] Object guardPrefab;
@@ -25,13 +23,15 @@ public class GameManager : Singleton<GameManager>
     {
         _um = UnitsManager.Instance;
 
+        maxGuards *= GameStats.difficulty;
+        GameStats.nbPeon += maxPeons;
+
         for (int i = 0; i < maxPeons; i++)
         {
             GameObject goPeon = Instantiate(peonPrefab) as GameObject;
             _um.AddPeon(goPeon.GetComponent<Peon>());
             float eulerY = Random.Range(0f, 359f);
             goPeon.transform.eulerAngles = new Vector3(goPeon.transform.eulerAngles.x, eulerY, goPeon.transform.eulerAngles.z);
-            //goPeon.transform.position = peonSpawns[Random.Range(0, peonSpawns.Count)].position;
             NavMeshHit hit = new NavMeshHit();
             float posX;
             float posZ;
@@ -51,15 +51,26 @@ public class GameManager : Singleton<GameManager>
             _um.AddGuard(goGuard.GetComponent<Guard>());
             float eulerY = Random.Range(0f, 359f);
             goGuard.transform.eulerAngles = new Vector3(goGuard.transform.eulerAngles.x, eulerY, goGuard.transform.eulerAngles.z);
-            goGuard.transform.position = guardSpawns[Random.Range(0, guardSpawns.Count)].position;
+            NavMeshHit hit = new NavMeshHit();
+            float posX;
+            float posZ;
+            do
+            {
+                posX = Random.Range(-arenaSize / 2, arenaSize / 2);
+                posZ = Random.Range(-arenaSize / 2, arenaSize / 2);
+            } while (!NavMesh.SamplePosition(new Vector3(posX, 0, posZ), out hit, 1, -1));
+            goGuard.transform.position = new Vector3(posX, 1, posZ);
+            //goGuard.transform.position = guardSpawns[Random.Range(0, guardSpawns.Count)].position;
             goGuard.transform.parent = guardsParent;
         }
 
         Transform player = _um.player.transform;
         player.transform.position = playerSpawn.position;
+        
         UnitsManager.AllGuardRemoved += ArenaCompleted;
+        Player.PlayerIsDead += GameOver;
 
-        this.ApplyDifficulty(1);
+        this.ApplyDifficulty(GameStats.difficulty);
 
         if (this.OnGameReady != null)
         {
@@ -90,12 +101,28 @@ public class GameManager : Singleton<GameManager>
 
     private void ArenaCompleted()
     {
-        Debug.Log("ARENA COMPLETED");
-        //TODO: end arena
+        Debug.Log("Total Peon : " + GameStats.nbPeon);
+        Debug.Log("Peon Killed : " + GameStats.nbPeonKilled);
+        if (GameStats.difficulty < 3)
+        {
+            Debug.Log("Arena Completed !");
+            GameStats.difficulty++;
+            Application.LoadLevel("3C");
+        }
+        else
+        {
+            Debug.Log("Game Completed !");
+        }
+    }
+
+    private void GameOver()
+    {
+        Debug.Log("GAME OVER");
     }
 
     void OnDisable()
     {
         UnitsManager.AllGuardRemoved -= ArenaCompleted;
+        Player.PlayerIsDead -= GameOver;
     }
 }

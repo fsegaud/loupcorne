@@ -20,4 +20,9 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 			return _instance;
 		}
 	}
+
+    //void OnDestroy()
+    //{
+    //    Debug.Log("Destroying instance of : " + typeof(T));
+    //}
 }
