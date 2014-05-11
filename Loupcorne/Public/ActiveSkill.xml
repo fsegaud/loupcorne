@@ -9,6 +9,7 @@
 		<Duration>1.5</Duration>
 		<AlignementGainOnUse>1</AlignementGainOnUse>
 		<Cooldown>10</Cooldown>
+		<Texture>UI/shining-heart</Texture>
 	</SkillEffectElement>
 
 	<SkillEffectElement Name="SkillEffectGood2" Type="Missile" Prefab="SkillEffect/Missile">
@@ -21,6 +22,7 @@
 		<AlignementGainOnUse>1</AlignementGainOnUse>
 		<Gfx>Gfx/Explosion01</Gfx>
 		<Sfx>Sfx/Boom</Sfx>
+		<Texture>UI/plasma-bolt</Texture>
 		<Cooldown>4</Cooldown>
 	</SkillEffectElement>
 	
@@ -31,6 +33,7 @@
 		<Duration>10</Duration>
 		<AlignementGainOnUse>1</AlignementGainOnUse>
 		<Gfx>Gfx/Explosion01</Gfx>
+		<Texture>UI/winged-shield</Texture>
 		<Cooldown>20</Cooldown>
 	</SkillEffectElement>
 	
@@ -44,7 +47,8 @@
 		<AlignementGainOnUse>-1</AlignementGainOnUse>
 		<Gfx>Gfx/Explosion01</Gfx>
 		<Sfx>Sfx/Boom</Sfx>
-		<Cooldown>1</Cooldown>
+		<Texture>UI/burning-meteor</Texture>
+		<Cooldown>2</Cooldown>
 	</SkillEffectElement>
 
 	<SkillEffectElement Name="SkillEffectEvil2" Type="Buff" Prefab="SkillEffect/Buff">
@@ -55,6 +59,7 @@
 		<Duration>10</Duration>
 		<AlignementGainOnUse>-1</AlignementGainOnUse>
 		<Gfx>Gfx/Explosion01</Gfx>
+		<Texture>UI/dripping-blade</Texture>
 		<Cooldown>15</Cooldown>
 	</SkillEffectElement>
 	
@@ -66,6 +71,7 @@
 		<Duration>0.75</Duration>
 		<AlignementGainOnUse>-1</AlignementGainOnUse>
 		<Cooldown>25</Cooldown>
+		<Texture>UI/flame-tunnel</Texture>
 	</SkillEffectElement>
 
 </ArrayOfSkillEffectElement>

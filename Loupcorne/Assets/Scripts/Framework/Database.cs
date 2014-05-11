@@ -35,5 +35,10 @@
 
             return null;
         }
+
+        public void Clear()
+        {
+            this.datatables.Clear();
+        }
     }
 }
