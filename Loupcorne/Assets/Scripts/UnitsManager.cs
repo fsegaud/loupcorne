@@ -43,6 +43,7 @@ public class UnitsManager : Singleton<UnitsManager>
             if (peons.Contains(p))
             {
                 peons.Remove(p);
+                GameStats.nbPeonKilled++;
                 if(PeonRemoved != null)
                     PeonRemoved(p);
             }

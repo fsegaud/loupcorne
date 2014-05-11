@@ -8,15 +8,19 @@ public class Player : Entity
     enum PlayerState
     {
         IDLE,
-        MOVING
+        MOVING,
+        DEAD
     }
     private PlayerState _state;
 
     //private readonly List<Skill> lockedSkills = new List<Skill>();
     //private readonly List<Skill> skills = new List<Skill>();
 
-    public int ActiveSkill
-    {
+    public delegate void PlayerIsDeadCallback();
+	public static event PlayerIsDeadCallback PlayerIsDead;
+
+	public int ActiveSkill
+	{
         get;
         private set;
     }
@@ -78,50 +82,54 @@ public class Player : Entity
 
 	void Update () 
     {
-        //Animation Speed
-        animation["hit"].weight = 2;
-        animation["hit"].speed = 2;
-        //animation["hit"].blendMode = AnimationBlendMode.Additive;
-        animation["run"].speed = (float)this.GetPropertyValue(SimProperties.Speed) / 3f;
-       
-        //Player Rotation
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit[] hits = Physics.RaycastAll(ray);
-       foreach(RaycastHit hit in hits)
+        if (_state != PlayerState.DEAD)
         {
-            if (hit.collider.gameObject.CompareTag("Ground"))
+            //Animation Speed
+            animation["hit"].weight = 2;
+            animation["hit"].speed = 2;
+            //animation["hit"].blendMode = AnimationBlendMode.Additive;
+            animation["run"].speed = (float)this.GetPropertyValue(SimProperties.Speed) / 3f;
+
+            //Player Rotation
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit[] hits = Physics.RaycastAll(ray);
+            foreach (RaycastHit hit in hits)
             {
-                Vector3 worldMousePos = new Vector3(hit.point.x, transform.position.y, hit.point.z);
-                transform.LookAt(worldMousePos);
-            }
-        }
-
-        if (Input.GetAxis("Vertical") > 0.2f || Input.GetAxis("Vertical") < -0.2f || Input.GetAxis("Horizontal") > 0.2f || Input.GetAxis("Horizontal") < -0.2f)
-            _state = PlayerState.MOVING;
-        else
-            _state = PlayerState.IDLE;
-
-
-       
-        if (Input.GetMouseButtonDown(0))
-        {
-            animation.Play("hit");
-            string sfxName = string.Format(@"Sfx/Sword{0}", Random.Range(1, 3));
-            GameObject.Instantiate(Resources.Load(sfxName), this.transform.position, this.transform.rotation);
-
-            Vector3 attackDirection = transform.forward; //* (float)this.GetPropertyValue(SimProperties.AttackRange);
-            Vector3 attackOrigin = new Vector3(transform.position.x, 1, transform.position.z);
-            Ray attacRay = new Ray(attackOrigin, attackDirection);
-            RaycastHit attackHit;
-            if (Physics.Raycast(attacRay, out attackHit, (float)this.GetPropertyValue(SimProperties.AttackRange)))
-            {
-                if (attackHit.collider.gameObject.CompareTag("Guard") || attackHit.collider.gameObject.CompareTag("Peon"))
+                if (hit.collider.gameObject.CompareTag("Ground"))
                 {
-                    Entity target = attackHit.collider.GetComponent<Entity>();
-                    float hitStrength = (float)this.GetPropertyValue(SimProperties.Attack) * 0.3f - (float)target.GetPropertyValue(SimProperties.Defence) * 0.1f;
-                    target.Hit(hitStrength);
+                    Vector3 worldMousePos = new Vector3(hit.point.x, transform.position.y, hit.point.z);
+                    transform.LookAt(worldMousePos);
                 }
             }
+
+            if (Input.GetAxis("Vertical") > 0.2f || Input.GetAxis("Vertical") < -0.2f || Input.GetAxis("Horizontal") > 0.2f || Input.GetAxis("Horizontal") < -0.2f)
+                _state = PlayerState.MOVING;
+            else
+                _state = PlayerState.IDLE;
+
+
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                animation.Play("hit");
+                string sfxName = string.Format(@"Sfx/Sword{0}", Random.Range(1, 3));
+                GameObject.Instantiate(Resources.Load(sfxName), this.transform.position, this.transform.rotation);
+
+                Vector3 attackDirection = transform.forward; //* (float)this.GetPropertyValue(SimProperties.AttackRange);
+                Vector3 attackOrigin = new Vector3(transform.position.x, 1, transform.position.z);
+                Ray attacRay = new Ray(attackOrigin, attackDirection);
+                RaycastHit attackHit;
+                if (Physics.Raycast(attacRay, out attackHit, (float)this.GetPropertyValue(SimProperties.AttackRange)))
+                {
+                    if (attackHit.collider.gameObject.CompareTag("Guard") || attackHit.collider.gameObject.CompareTag("Peon"))
+                    {
+                        Entity target = attackHit.collider.GetComponent<Entity>();
+                        float hitStrength = (float)this.GetPropertyValue(SimProperties.Attack) * 0.3f - (float)target.GetPropertyValue(SimProperties.Defence) * 0.1f;
+                        target.Hit(hitStrength);
+                    }
+                }
+            }
+            UpdateSkills();
         }
   
         switch (_state)
@@ -137,9 +145,6 @@ public class Player : Entity
                 transform.position += inputs; 
                 break;
         }
-
-        UpdateSkills();
-	
 	}
 
     void UpdateSkills()
@@ -204,5 +209,14 @@ public class Player : Entity
             this.AddDescriptor(descriptor);
             this.Refresh();
         }
+    }
+
+    public override void Kill()
+    {
+        //TODO Play death anim
+        //TODO uncomment
+        //_state = PlayerState.DEAD;
+        PlayerIsDead();
+
     }
 }
