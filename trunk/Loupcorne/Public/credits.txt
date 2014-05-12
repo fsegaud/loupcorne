@@ -24,3 +24,9 @@ Marc-Antoine Archier
 
 [Textures]
 http://cgtextures.com
+
+[Icons]
+http://game-icons.net
+
+[Fonts]
+http://dafont.com
