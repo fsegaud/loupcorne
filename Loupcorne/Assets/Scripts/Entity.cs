@@ -7,7 +7,8 @@ public class Entity : SimObjectWrapper
     [SerializeField] protected float _health;
     
     protected float _maxHealth;
-
+    protected bool isAlive;
+    
     public float Health
     {
         get
@@ -47,6 +48,8 @@ public class Entity : SimObjectWrapper
         {
             Debug.LogWarning("Player.base.Start");
         }
+
+        isAlive = true;
 	}
 	
 	void Update () 
@@ -62,9 +65,12 @@ public class Entity : SimObjectWrapper
             damageReductionRation = (float)this.GetPropertyValue(SimProperties.DamageReductionRatio);
         }
 
-        _health -= hitStrength * damageReductionRation;
-        if (_health <= 0)
-            Kill();
+        if (isAlive)
+        {
+            _health -= hitStrength * damageReductionRation;
+            if (_health <= 0)
+                Kill();
+        }
     }
 
     public virtual void Kill()
@@ -79,6 +85,7 @@ public class Entity : SimObjectWrapper
         }
 
         GameObject.Instantiate(Resources.Load(@"Sfx/Wilhlem"), this.transform.position, this.transform.rotation);
+        isAlive = false;
     }
 
     protected virtual void OnGUI()
