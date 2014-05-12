@@ -55,4 +55,9 @@ class SkillManager
             }
         }
     }
+
+    public void ClearSkills()
+    {
+        this.unlockedSkills.Clear();
+    }
 }

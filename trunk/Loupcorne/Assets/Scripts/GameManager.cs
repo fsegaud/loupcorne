@@ -51,16 +51,16 @@ public class GameManager : Singleton<GameManager>
             _um.AddGuard(goGuard.GetComponent<Guard>());
             float eulerY = Random.Range(0f, 359f);
             goGuard.transform.eulerAngles = new Vector3(goGuard.transform.eulerAngles.x, eulerY, goGuard.transform.eulerAngles.z);
-            NavMeshHit hit = new NavMeshHit();
-            float posX;
-            float posZ;
-            do
-            {
-                posX = Random.Range(-arenaSize / 2, arenaSize / 2);
-                posZ = Random.Range(-arenaSize / 2, arenaSize / 2);
-            } while (!NavMesh.SamplePosition(new Vector3(posX, 0, posZ), out hit, 1, -1));
-            goGuard.transform.position = new Vector3(posX, 1, posZ);
-            //goGuard.transform.position = guardSpawns[Random.Range(0, guardSpawns.Count)].position;
+            //NavMeshHit hit = new NavMeshHit();
+            //float posX;
+            //float posZ;
+            //do
+            //{
+            //    posX = Random.Range(-arenaSize / 2, arenaSize / 2);
+            //    posZ = Random.Range(-arenaSize / 2, arenaSize / 2);
+            //} while (!NavMesh.SamplePosition(new Vector3(posX, 0, posZ), out hit, 1, -1));
+            //goGuard.transform.position = new Vector3(posX, 1, posZ);
+            goGuard.transform.position = guardSpawns[Random.Range(0, guardSpawns.Count)].position;
             goGuard.transform.parent = guardsParent;
         }
 

@@ -36,8 +36,8 @@ public class Player : Entity
         // Apply simulation object.
         this.SetSimObject(LoupCorne.Framework.Database.Instance.GetDatatable<LoupCorne.Framework.SimObject>().GetElement("King"));
 
-   
 
+        SkillManager.Instance.ClearSkills();
         SkillManager.OnSkillUnlocked += this.SkillManager_OnSkillUnlocked;
         SkillManager.Instance.UnlockSkill(1, Skill.Alignment.Evil);
         SkillManager.Instance.UnlockSkill(2, Skill.Alignment.Evil);
@@ -87,7 +87,6 @@ public class Player : Entity
             //Animation Speed
             animation["hit"].weight = 2;
             animation["hit"].speed = 2;
-            //animation["hit"].blendMode = AnimationBlendMode.Additive;
             animation["run"].speed = (float)this.GetPropertyValue(SimProperties.Speed) / 3f;
 
             //Player Rotation
@@ -144,11 +143,18 @@ public class Player : Entity
                 inputs *= (float)this.GetPropertyValue(SimProperties.Speed) * Time.deltaTime;
                 transform.position += inputs; 
                 break;
+            case PlayerState.DEAD:
+                
+                break;
         }
 	}
 
     void UpdateSkills()
     {
+        //Animation Speed
+        animation["spell"].weight = 2;
+        animation["spell"].speed = 3;
+
         float scrollWheelOffset = Input.GetAxis("Mouse ScrollWheel");
         if (scrollWheelOffset != 0)
         {
@@ -184,6 +190,7 @@ public class Player : Entity
 
         if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Space))
         {
+            animation.Play("spell");
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit[] hits = Physics.RaycastAll(ray);
             foreach (RaycastHit hit in hits)
@@ -213,9 +220,9 @@ public class Player : Entity
 
     public override void Kill()
     {
-        //TODO Play death anim
-        //TODO uncomment
-        //_state = PlayerState.DEAD;
+        base.Kill();
+        _state = PlayerState.DEAD;
+        animation.Play("death");
         PlayerIsDead();
 
     }
