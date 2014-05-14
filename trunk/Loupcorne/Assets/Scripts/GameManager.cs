@@ -5,7 +5,8 @@ using System.Collections.Generic;
 public class GameManager : Singleton<GameManager>
 {
     [SerializeField] private Transform playerSpawn;
-    [SerializeField] private List<Transform> guardSpawns;
+    [SerializeField] private Transform guardSpawnsParent;
+    private List<SpawnPoint> guardSpawns;
     [SerializeField] private int maxGuards; 
     [SerializeField] private int maxPeons;
     [SerializeField] Object guardPrefab;
@@ -26,46 +27,14 @@ public class GameManager : Singleton<GameManager>
         maxGuards *= GameStats.difficulty;
         GameStats.nbPeon += maxPeons;
 
-        for (int i = 0; i < maxPeons; i++)
-        {
-            GameObject goPeon = Instantiate(peonPrefab) as GameObject;
-            _um.AddPeon(goPeon.GetComponent<Peon>());
-            float eulerY = Random.Range(0f, 359f);
-            goPeon.transform.eulerAngles = new Vector3(goPeon.transform.eulerAngles.x, eulerY, goPeon.transform.eulerAngles.z);
-            NavMeshHit hit = new NavMeshHit();
-            float posX;
-            float posZ;
-             do
-             {
-                 posX = Random.Range(-arenaSize / 2, arenaSize / 2);
-                 posZ = Random.Range(-arenaSize / 2, arenaSize / 2);
-             } while(!NavMesh.SamplePosition(new Vector3(posX, 0, posZ), out hit, 1, -1));
-             goPeon.transform.position = new Vector3(posX, 1, posZ);
-           
-            goPeon.transform.parent = peonsParent;
-        }
+        CreateGuardSpawns();
 
-        for (int i = 0; i < maxGuards; i++)
-        {
-            GameObject goGuard = Instantiate(guardPrefab) as GameObject;
-            _um.AddGuard(goGuard.GetComponent<Guard>());
-            float eulerY = Random.Range(0f, 359f);
-            goGuard.transform.eulerAngles = new Vector3(goGuard.transform.eulerAngles.x, eulerY, goGuard.transform.eulerAngles.z);
-            //NavMeshHit hit = new NavMeshHit();
-            //float posX;
-            //float posZ;
-            //do
-            //{
-            //    posX = Random.Range(-arenaSize / 2, arenaSize / 2);
-            //    posZ = Random.Range(-arenaSize / 2, arenaSize / 2);
-            //} while (!NavMesh.SamplePosition(new Vector3(posX, 0, posZ), out hit, 1, -1));
-            //goGuard.transform.position = new Vector3(posX, 1, posZ);
-            goGuard.transform.position = guardSpawns[Random.Range(0, guardSpawns.Count)].position;
-            goGuard.transform.parent = guardsParent;
-        }
+        CreatePeons();
+
+        CreateGuards();
 
         Transform player = _um.player.transform;
-        player.transform.position = playerSpawn.position;
+        player.position = playerSpawn.position;
         
         UnitsManager.AllGuardRemoved += ArenaCompleted;
         Player.PlayerIsDead += GameOver;
@@ -77,6 +46,69 @@ public class GameManager : Singleton<GameManager>
             this.OnGameReady(this);
         }
 	}
+
+    private void CreatePeons()
+    {
+        for (int i = 0; i < maxPeons; i++)
+        {
+            GameObject goPeon = Instantiate(peonPrefab) as GameObject;
+            _um.AddPeon(goPeon.GetComponent<Peon>());
+            float eulerY = Random.Range(0f, 359f);
+            goPeon.transform.eulerAngles = new Vector3(goPeon.transform.eulerAngles.x, eulerY, goPeon.transform.eulerAngles.z);
+            NavMeshHit hit = new NavMeshHit();
+            float posX;
+            float posZ;
+            do
+            {
+                posX = Random.Range(-arenaSize / 2, arenaSize / 2);
+                posZ = Random.Range(-arenaSize / 2, arenaSize / 2);
+            } while (!NavMesh.SamplePosition(new Vector3(posX, 0, posZ), out hit, 1, -1));
+            goPeon.transform.position = new Vector3(posX, 1, posZ);
+
+            goPeon.transform.parent = peonsParent;
+        }
+    }
+
+    private void CreateGuardSpawns()
+    {
+        guardSpawns = new List<SpawnPoint>();
+        for (int i = 0; i < guardSpawnsParent.childCount; i++)
+        {
+            SpawnPoint sp = guardSpawnsParent.GetChild(i).GetComponent<SpawnPoint>();
+            guardSpawns.Add(sp);
+        }
+
+        //Shuffle spawn points
+        System.Random rng = new System.Random();
+        int n = guardSpawns.Count;
+        while (n > 1)
+        {
+            n--;
+            int k = rng.Next(n + 1);
+            SpawnPoint value = guardSpawns[k];
+            guardSpawns[k] = guardSpawns[n];
+            guardSpawns[n] = value;
+        }  
+    }
+
+    private void CreateGuards()
+    {
+        for (int i = 0; i < maxGuards; i++)
+        {
+            Debug.Log("create guards");
+            GameObject goGuard = Instantiate(guardPrefab) as GameObject;
+            _um.AddGuard(goGuard.GetComponent<Guard>());
+            float eulerY = Random.Range(0f, 359f);
+            goGuard.transform.eulerAngles = new Vector3(goGuard.transform.eulerAngles.x, eulerY, goGuard.transform.eulerAngles.z);
+
+            foreach (SpawnPoint sp in guardSpawns)
+            {
+                if (sp.AddGuard(goGuard))
+                    break;
+            }
+            goGuard.transform.parent = guardsParent;
+        }
+    }
 
     private void ApplyDifficulty(int difficulty)
     {
