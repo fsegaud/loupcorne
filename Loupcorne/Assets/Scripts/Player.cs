@@ -22,7 +22,7 @@ public class Player : Entity
 	public int ActiveSkill
 	{
         get;
-        private set;
+        set;
     }
 
 	protected override void Start () 

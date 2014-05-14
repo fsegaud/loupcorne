@@ -51243,6 +51243,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skin: {fileID: 11400000, guid: f701fd3adbffeea4fa8e52a1a6c7c143, type: 2}
+  x1: 0
+  y1: 0
+  x2: 0
+  y2: 0
 --- !u!1 &1761810585
 GameObject:
   m_ObjectHideFlags: 0
@@ -62133,7 +62137,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2139765983
 Transform:
   m_ObjectHideFlags: 0

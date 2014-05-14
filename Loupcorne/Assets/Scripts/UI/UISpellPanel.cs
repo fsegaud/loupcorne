@@ -12,7 +12,9 @@ public class UISpellPanel : UIPanel
         int activeSkill = UnitsManager.Instance.player.ActiveSkill;
         List<Skill> skills = SkillManager.Instance.Skills;
 
-        GUI.BeginGroup(new Rect(Screen.width * .5f - 188f, Screen.height - 94f, 376f, 94f), string.Empty);
+        Skill skillTooltipToShow = null;
+
+        GUI.BeginGroup(new Rect(Screen.width * .5f - 188f, Screen.height - 94f, 376f, 94f));
         {
             // Background.
             GUI.Box(new Rect(0f, 0f, 376f, 94f), string.Empty, "background");
@@ -30,7 +32,13 @@ public class UISpellPanel : UIPanel
                 // Spell button.
                 if (GUI.Button(new Rect(x, 8f + 30f, 48f, 48f), this.skillTextures[skills[i].SkillEffectName]))
                 {
-                    /* Add cast code here... */
+                    UnitsManager.Instance.player.ActiveSkill = i;
+                }
+
+                Rect collision = new Rect(Screen.width * .5f - 188f + x, 0f, 48f, 48f);
+                if (collision.Contains(Input.mousePosition))
+                {
+                    skillTooltipToShow = skills[i];
                 }
 
                 // Cooldown.
@@ -42,6 +50,26 @@ public class UISpellPanel : UIPanel
 
                 x += 56f;
             }
+        }
+        GUI.EndGroup();
+
+        if (skillTooltipToShow != null)
+        {
+            this.DrawTooltip(skillTooltipToShow);
+        }
+    }
+
+    private void DrawTooltip(Skill skill)
+    {
+        SkillEffectElement element = LoupCorne.Framework.Database.Instance.GetDatatable<SkillEffectElement>().GetElement(skill.SkillEffectName);
+
+        GUI.BeginGroup(new Rect(Screen.width * .5f - 400f, Screen.height - 10f - 100f, 200f, 100f));
+        {
+            GUI.Box(new Rect(0f, 0f, 200f, 100f), string.Empty, "background-tooltip");
+
+            GUI.Label(new Rect(5f, 5f, 190f, 20f), element.Title, "title");
+            GUI.Label(new Rect(5f, 25f, 190f, 60f), element.Description);
+            GUI.Label(new Rect(5f, 75f, 190f, 20f), string.Format("Cooldown: {0:#.0} sec.", element.Cooldown));
         }
         GUI.EndGroup();
     }
