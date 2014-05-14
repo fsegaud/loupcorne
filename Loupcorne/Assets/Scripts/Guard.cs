@@ -37,6 +37,8 @@ public class Guard : Entity
         this.SetSimObject(LoupCorne.Framework.Database.Instance.GetDatatable<LoupCorne.Framework.SimObject>().GetElement("Guard"));
         this.Refresh();
 
+        Player.PlayerIsDead += OnPlayerDeath;
+
         base.Start();
 	}
 
@@ -47,10 +49,6 @@ public class Guard : Entity
         return;
 #endif
         animation["run"].speed = (float)this.GetPropertyValue(SimProperties.Speed) / 3;
-        //animation["hit"].weight = 2;
-        //animation["hit"].speed = 2;
-        //animation["hit"].blendMode = AnimationBlendMode.Additive;
-        
         _navAgent.speed = (float)this.GetPropertyValue(SimProperties.Speed);
 
 		switch(_state)
@@ -107,19 +105,6 @@ public class Guard : Entity
 			_attackTimer += Time.deltaTime;
 			if(_attackTimer >= attackSpeed)
             {
-                //Vector3 attackDirection = transform.forward;// * (float)this.GetPropertyValue(SimProperties.AttackRange);
-                //Vector3 attackOrigin = new Vector3(transform.position.x, 1, transform.position.z);
-                //Ray attacRay = new Ray(attackOrigin, attackDirection);
-                //RaycastHit attackHit;
-                //if (Physics.Raycast(attacRay, out attackHit, (float)this.GetPropertyValue(SimProperties.AttackRange)))
-                //{
-                //    Entity hitEntity = attackHit.collider.GetComponent<Entity>();
-                //    if (hitEntity != null && hitEntity == _target)
-                //    {
-                //        float effectiveDmg = (float)this.GetPropertyValue(SimProperties.Attack) * 0.3f - (float)_target.GetPropertyValue(SimProperties.Defence) * 0.1f;
-                //        _target.Hit(effectiveDmg);
-                //    }
-                //}
                 float effectiveDmg = (float)this.GetPropertyValue(SimProperties.Attack) * 0.3f - (float)_target.GetPropertyValue(SimProperties.Defence) * 0.1f;
                 _target.Hit(effectiveDmg);
 				_attackTimer = 0f;
@@ -157,14 +142,18 @@ public class Guard : Entity
 	void OnDisable()
 	{
 		UnitsManager.PeonRemoved -= OnPeonRemoved;
+        Player.PlayerIsDead -= OnPlayerDeath;
 	}
 
     public override void Kill()
     {
         base.Kill();
-
-        Debug.Log("WAAARRRGHHH");
         _um.RemoveGuard(this);
         Destroy(gameObject);
+    }
+
+    private void OnPlayerDeath()
+    {
+        _state = GuardStates.IDLE;
     }
 }

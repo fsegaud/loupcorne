@@ -85,4 +85,12 @@ public class Peon : Entity
 			_state = PeonStates.ATTACKED;
 		}
 	}
+
+    void OnTriggerExit(Collider other)
+    {
+        if(other.GetComponent<Guard>() != null)
+        {
+            _state = PeonStates.IDLE;
+        }
+    }
 }
