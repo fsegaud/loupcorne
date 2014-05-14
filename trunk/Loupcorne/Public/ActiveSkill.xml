@@ -2,7 +2,6 @@
 <ArrayOfSkillEffectElement xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 
 	<SkillEffectElement Name="SkillEffectGood1" Type="Aoe" Prefab="SkillEffect/Aoe">
-		<Title>Aoe Good</Title>
 		<Tags>Peon</Tags>
 		<Damage>-1.5</Damage>
 		<Radius>3</Radius>
@@ -10,10 +9,11 @@
 		<AlignementGainOnUse>1</AlignementGainOnUse>
 		<Cooldown>10</Cooldown>
 		<Texture>UI/shining-heart</Texture>
+    <Title>&lt;color=#00C0FF&gt;Well of Light&lt;/color&gt;</Title>
+    <Description>Heals all friendly units in range.</Description>
 	</SkillEffectElement>
 
 	<SkillEffectElement Name="SkillEffectGood2" Type="Missile" Prefab="SkillEffect/Missile">
-		<Title>Test Missile</Title>
 		<Tags>Guard</Tags>
 		<Speed>15</Speed>
 		<Damage>2</Damage>
@@ -24,10 +24,11 @@
 		<Sfx>Sfx/Boom</Sfx>
 		<Texture>UI/plasma-bolt</Texture>
 		<Cooldown>4</Cooldown>
+    <Title>&lt;color=#00C0FF&gt;Smite&lt;/color&gt;</Title>
+    <Description>Casts a holy bolt that inflicts 2 damages to foes and spare friends.</Description>
 	</SkillEffectElement>
 	
 	<SkillEffectElement Name="SkillEffectGood3" Type="Buff" Prefab="SkillEffect/Buff">
-		<Title>Test Buff</Title>
 		<Tags>King</Tags>
 		<BuffDescriptor>SkillEffectGood</BuffDescriptor>
 		<Duration>10</Duration>
@@ -35,10 +36,11 @@
 		<Gfx>Gfx/Explosion01</Gfx>
 		<Texture>UI/winged-shield</Texture>
 		<Cooldown>20</Cooldown>
+    <Title>&lt;color=#00C0FF&gt;Shield of Bravery&lt;/color&gt;</Title>
+    <Description>Negates all all received damages for 10 seconds.</Description>
 	</SkillEffectElement>
 	
 	<SkillEffectElement Name="SkillEffectEvil1" Type="Missile" Prefab="SkillEffect/MissileFire">
-		<Title>Test Missile</Title>
 		<Tags>Guard,Peon</Tags>
 		<Speed>17.5</Speed>
 		<Damage>1</Damage>
@@ -49,10 +51,11 @@
 		<Sfx>Sfx/Boom</Sfx>
 		<Texture>UI/burning-meteor</Texture>
 		<Cooldown>2</Cooldown>
+    <Title>&lt;color=#FF0000&gt;Fire Ball&lt;/color&gt;</Title>
+    <Description>Casts a fire ball that inflicts 1 damage to both friends and foes.</Description>
 	</SkillEffectElement>
 
 	<SkillEffectElement Name="SkillEffectEvil2" Type="Buff" Prefab="SkillEffect/Buff">
-		<Title>Test Buff</Title>
 		<Tags>King</Tags>
 		<BuffDescriptor>SkillEffectEvilActive</BuffDescriptor>
 		<Descriptor>SkillEffectEvilPassive</Descriptor>
@@ -61,10 +64,11 @@
 		<Gfx>Gfx/Explosion01</Gfx>
 		<Texture>UI/dripping-blade</Texture>
 		<Cooldown>15</Cooldown>
+    <Title>&lt;color=#FF0000&gt;Inner Rage&lt;/color&gt;</Title>
+    <Description>Considerably enhances the damages you inflict. Passively reduces cooldowns.</Description>
 	</SkillEffectElement>
 	
 	<SkillEffectElement Name="SkillEffectEvil3" Type="Aoe" Prefab="SkillEffect/Aoe">
-		<Title>Test Aoe</Title>
 		<Tags>Guard,Peon</Tags>
 		<Damage>1</Damage>
 		<Radius>10</Radius>
@@ -72,6 +76,8 @@
 		<AlignementGainOnUse>-1</AlignementGainOnUse>
 		<Cooldown>25</Cooldown>
 		<Texture>UI/flame-tunnel</Texture>
+    <Title>&lt;color=#FF0000&gt;Earth of Fire&lt;/color&gt;</Title>
+    <Description>Inflicts damages to friends and foes in radius. NO WIND!</Description>
 	</SkillEffectElement>
 
 </ArrayOfSkillEffectElement>
