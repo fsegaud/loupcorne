@@ -3,6 +3,8 @@ using System.Collections;
 
 public class UITimerPanel : UIPanel
 {
+    private string timeValue = "00:00";
+
     protected override void Draw()
     {
         base.Draw();
@@ -13,8 +15,13 @@ public class UITimerPanel : UIPanel
             GUI.Box(new Rect(0f, 0f, 100f, 32f), string.Empty, "background");
 
             // Timer.
-            GUI.Label(new Rect(0f, 0f, 100f, 32f), "00:00", "timer");
+            GUI.Label(new Rect(0f, 0f, 100f, 32f), timeValue, "timer");
         }
         GUI.EndGroup();
+    }
+
+    public void SetTimeValue(string timeValue)
+    {
+        this.timeValue = timeValue;
     }
 }
