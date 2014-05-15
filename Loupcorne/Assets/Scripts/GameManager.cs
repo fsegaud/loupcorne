@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -9,13 +10,15 @@ public class GameManager : Singleton<GameManager>
     private List<SpawnPoint> guardSpawns;
     [SerializeField] private int maxGuards; 
     [SerializeField] private int maxPeons;
-    [SerializeField] Object guardPrefab;
-    [SerializeField] Object peonPrefab;
+    [SerializeField] UnityEngine.Object guardPrefab;
+    [SerializeField] UnityEngine.Object peonPrefab;
     [SerializeField] Transform guardsParent;
     [SerializeField] Transform peonsParent;
     [SerializeField] private int arenaSize;
 
     private UnitsManager _um;
+
+    private UITimerPanel uiTimer;
 
     public delegate void GameReadyEventHandler(GameManager sender);
     public event GameReadyEventHandler OnGameReady;
@@ -41,6 +44,21 @@ public class GameManager : Singleton<GameManager>
 
         this.ApplyDifficulty(GameStats.difficulty);
 
+        Transform ui = GameObject.FindGameObjectWithTag("GUI").transform;
+        uiTimer = ui.FindChild("TimerPanel").GetComponent<UITimerPanel>();
+        switch (GameStats.difficulty)
+        {
+            case 1:
+                GameStats.timer = 120;
+                break;
+            case 2:
+                GameStats.timer = 90;
+                break;
+            case 3:
+                GameStats.timer = 60;
+                break;
+        }
+
         if (this.OnGameReady != null)
         {
             this.OnGameReady(this);
@@ -53,15 +71,15 @@ public class GameManager : Singleton<GameManager>
         {
             GameObject goPeon = Instantiate(peonPrefab) as GameObject;
             _um.AddPeon(goPeon.GetComponent<Peon>());
-            float eulerY = Random.Range(0f, 359f);
+            float eulerY = UnityEngine.Random.Range(0f, 359f);
             goPeon.transform.eulerAngles = new Vector3(goPeon.transform.eulerAngles.x, eulerY, goPeon.transform.eulerAngles.z);
             NavMeshHit hit = new NavMeshHit();
             float posX;
             float posZ;
             do
             {
-                posX = Random.Range(-arenaSize / 2, arenaSize / 2);
-                posZ = Random.Range(-arenaSize / 2, arenaSize / 2);
+                posX = UnityEngine.Random.Range(-arenaSize / 2, arenaSize / 2);
+                posZ = UnityEngine.Random.Range(-arenaSize / 2, arenaSize / 2);
             } while (!NavMesh.SamplePosition(new Vector3(posX, 0, posZ), out hit, 1, -1));
             goPeon.transform.position = new Vector3(posX, 1, posZ);
 
@@ -98,7 +116,7 @@ public class GameManager : Singleton<GameManager>
             Debug.Log("create guards");
             GameObject goGuard = Instantiate(guardPrefab) as GameObject;
             _um.AddGuard(goGuard.GetComponent<Guard>());
-            float eulerY = Random.Range(0f, 359f);
+            float eulerY = UnityEngine.Random.Range(0f, 359f);
             goGuard.transform.eulerAngles = new Vector3(goGuard.transform.eulerAngles.x, eulerY, goGuard.transform.eulerAngles.z);
 
             foreach (SpawnPoint sp in guardSpawns)
@@ -128,22 +146,41 @@ public class GameManager : Singleton<GameManager>
 	
 	void Update () 
     {
-	
+        if(GameStats.timer > 0)
+        {
+            GameStats.timer -= Time.deltaTime;
+            TimeSpan timeSpan = TimeSpan.FromSeconds(GameStats.timer);
+            string timeValue = String.Format("{0:00}:{1:00}", timeSpan.Minutes, timeSpan.Seconds);
+            uiTimer.SetTimeValue(timeValue);
+        }
+        else
+            GameOver();
 	}
 
     private void ArenaCompleted()
     {
-        Debug.Log("Total Peon : " + GameStats.nbPeon);
-        Debug.Log("Peon Killed : " + GameStats.nbPeonKilled);
         if (GameStats.difficulty < 3)
         {
-            Debug.Log("Arena Completed !");
+            Debug.Log("Arena " + GameStats.difficulty + " Completed !");
+            GameStats.score += GameStats.nbPeon - GameStats.nbPeonKilled;
             GameStats.difficulty++;
             Application.LoadLevel("3C");
         }
         else
         {
+            GameStats.score += GameStats.nbPeon - GameStats.nbPeonKilled;
             Debug.Log("Game Completed !");
+            Debug.Log("Score = " + GameStats.score);
+            if (GameStats.score >= GameStats.nbPeon / 2)
+            {
+                Debug.Log("Alignement = Good !");
+                //TODO: Load scene good_ending 
+            }
+            else
+            {
+                Debug.Log("Alignement = Evil");
+                //TODO: Load scene bad_ending
+            }
         }
     }
 
