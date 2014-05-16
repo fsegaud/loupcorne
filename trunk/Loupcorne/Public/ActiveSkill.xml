@@ -37,7 +37,7 @@
 		<Texture>UI/winged-shield</Texture>
 		<Cooldown>20</Cooldown>
     <Title>&lt;color=#00C0FF&gt;Shield of Bravery&lt;/color&gt;</Title>
-    <Description>Negates all all received damages for 10 seconds.</Description>
+    <Description>Negates all received damages for 10 seconds.</Description>
 	</SkillEffectElement>
 	
 	<SkillEffectElement Name="SkillEffectEvil1" Type="Missile" Prefab="SkillEffect/MissileFire">
@@ -59,7 +59,7 @@
 		<Tags>King</Tags>
 		<BuffDescriptor>SkillEffectEvilActive</BuffDescriptor>
 		<Descriptor>SkillEffectEvilPassive</Descriptor>
-		<Duration>10</Duration>
+		<Duration>5</Duration>
 		<AlignementGainOnUse>-1</AlignementGainOnUse>
 		<Gfx>Gfx/Explosion01</Gfx>
 		<Texture>UI/dripping-blade</Texture>
