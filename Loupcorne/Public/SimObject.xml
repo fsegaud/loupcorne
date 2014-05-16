@@ -17,7 +17,7 @@
 	  <SimProperty Name="MaxHealth" BaseValue="7" />
 	  <SimProperty Name="Speed" BaseValue="3.5" />
 	  <SimProperty Name="Defence" BaseValue="7" />
-	  <SimProperty Name="AlignmentRewardOnDeath" BaseValue="-1" />
+	  <SimProperty Name="AlignmentRewardOnDeath" BaseValue="-5" />
 	</SimObject>
 
 	<SimObject Name="Guard" Class="Foe">
