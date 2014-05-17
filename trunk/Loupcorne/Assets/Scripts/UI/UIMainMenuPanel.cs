@@ -52,25 +52,25 @@ public class UIMainMenuPanel : UIPanel
 
         GUI.BeginGroup(new Rect(32f, Screen.height * .5f - 185f, 300f, 370f), string.Empty);
         {
-            GUI.Box(new Rect(0f, 0f, 300f, 370f), string.Empty);
+            GUI.Box(new Rect(0f, 0f, 300f, 370f), string.Empty, "background");
 
-            if (GUI.Button(new Rect(10f, 10f, 280f, 80f), "NEW GAME"))
+            if (GUI.Button(new Rect(10f, 10f, 280f, 80f), "NEW GAME", "button"))
             {
                 this.state = State.Loading;
                 Application.LoadLevel("3C");
             }
 
-            if (GUI.Button(new Rect(10f, 100f, 280f, 80f), "MANUAL"))
+            if (GUI.Button(new Rect(10f, 100f, 280f, 80f), "MANUAL", "button"))
             {
                 this.state = State.Manual;
             }
 
-            if (GUI.Button(new Rect(10f, 190f, 280f, 80f), "CREDITS"))
+            if (GUI.Button(new Rect(10f, 190f, 280f, 80f), "CREDITS", "button"))
             {
                 this.state = State.Credits;
             }
 
-            if (GUI.Button(new Rect(10f, 280f, 280f, 80f), "QUIT TO DESKTOP"))
+            if (GUI.Button(new Rect(10f, 280f, 280f, 80f), "QUIT TO DESKTOP", "button"))
             {
                 Application.Quit();
             }
@@ -84,11 +84,11 @@ public class UIMainMenuPanel : UIPanel
 
         GUI.BeginGroup(new Rect(32f, Screen.height * .5f - 185f, 300f, 370f), string.Empty);
         {
-            GUI.Box(new Rect(0f, 0f, 300f, 370f), string.Empty);
+            GUI.Box(new Rect(0f, 0f, 300f, 370f), string.Empty, "background");
 
             GUI.Label(new Rect(10f, 5f, 280f, 270f), Content.Credits, "credits");
 
-            if (GUI.Button(new Rect(10f, 280f, 280f, 80f), "BACK"))
+            if (GUI.Button(new Rect(10f, 280f, 280f, 80f), "BACK", "button"))
             {
                 this.state = State.Main;
             }
@@ -102,11 +102,11 @@ public class UIMainMenuPanel : UIPanel
 
         GUI.BeginGroup(new Rect(32f, Screen.height * .5f - 185f, 300f, 370f), string.Empty);
         {
-            GUI.Box(new Rect(0f, 0f, 300f, 370f), string.Empty);
+            GUI.Box(new Rect(0f, 0f, 300f, 370f), string.Empty, "background");
 
             GUI.Label(new Rect(10f, 5f, 280f, 270f), Content.Manual, "manual");
 
-            if (GUI.Button(new Rect(10f, 280f, 280f, 80f), "BACK"))
+            if (GUI.Button(new Rect(10f, 280f, 280f, 80f), "BACK", "button"))
             {
                 this.state = State.Main;
             }
