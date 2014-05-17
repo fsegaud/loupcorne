@@ -23,7 +23,7 @@
 	<SimObject Name="Guard" Class="Foe">
 	  <SimProperty Name="MaxHealth" BaseValue="8" />
 	  <SimProperty Name="Speed" BaseValue="5" />
-	  <SimProperty Name="Attack" BaseValue="10" />
+	  <SimProperty Name="Attack" BaseValue="5" />
 	  <SimProperty Name="Defence" BaseValue="8" />
 	   <SimProperty Name="AttackRange" BaseValue="1" />
 	  <SimProperty Name="AlignmentRewardOnDeath" BaseValue="0" />

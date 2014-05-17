@@ -185,12 +185,12 @@ public class GameManager : Singleton<GameManager>
             if (GameStats.score >= GameStats.nbPeon / 2)
             {
                 Debug.Log("Alignement = Good !");
-                //TODO: Load scene good_ending 
+                Application.LoadLevel("EndingGood");
             }
             else
             {
                 Debug.Log("Alignement = Evil");
-                //TODO: Load scene bad_ending
+                Application.LoadLevel("EndingBad");
             }
         }
     }

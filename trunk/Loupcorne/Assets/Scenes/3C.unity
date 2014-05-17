@@ -45205,7 +45205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpawn: {fileID: 351779111}
-  maxGuards: 10
+  maxGuards: 5
   maxPeons: 20
   guardPrefab: {fileID: 100088, guid: d024acf0dc8c8ee43be385a476b6b846, type: 2}
   peonPrefab: {fileID: 100086, guid: b2c0e0b22cb6d6444b1694277c6b3b39, type: 2}
