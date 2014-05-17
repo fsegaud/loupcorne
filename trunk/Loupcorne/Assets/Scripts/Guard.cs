@@ -48,13 +48,13 @@ public class Guard : Entity
         _state = GuardStates.IDLE;
         return;
 #endif
-        animation["run"].speed = (float)this.GetPropertyValue(SimProperties.Speed) / 3;
+        animation["run"].speed = (float)this.GetPropertyValue(SimProperties.Speed) / 4;
         _navAgent.speed = (float)this.GetPropertyValue(SimProperties.Speed);
 
 		switch(_state)
 		{
 		case GuardStates.IDLE:
-                animation.CrossFade("idle");
+            animation.CrossFade("idle");
             float distToPlayer = Vector3.Distance(transform.position, _um.player.transform.position);
             bool targetAssigned = false;
             //Search for a peon in visible area

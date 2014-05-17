@@ -37,7 +37,7 @@ public class Entity : SimObjectWrapper
     {
         _health = (float)this.GetPropertyValue(SimProperties.MaxHealth);
         this._maxHealth = this._health;
-        //Debug.Log(this._health + "/" + this._maxHealth);
+//        Debug.Log(this._health + "/" + this._maxHealth);
 
         // Apply difficulty.
         if (this.DifficultyDescriptor != null)

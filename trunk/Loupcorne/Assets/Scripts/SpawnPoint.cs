@@ -6,10 +6,17 @@ public class SpawnPoint : MonoBehaviour
     private int capacity;
     private int nbGuard;
 
+	void Awake()
+	{
+		capacity = 1;
+		nbGuard = 0;
+	}
+
 	// Use this for initialization
 	void Start () {
 
-        capacity = GameStats.difficulty;
+		//Debug.Log("Start SpawnPoint");
+        
 	
 	}
 	
@@ -19,11 +26,14 @@ public class SpawnPoint : MonoBehaviour
 	}
 
     public bool AddGuard(GameObject guard)
-    {
+	{
+		//Debug.Log(capacity);
+		//Debug.Log(nbGuard);
         if (nbGuard < capacity)
         {
+			//Debug.Log("Adding Guard");
             nbGuard++;
-            guard.transform.position = this.transform.position;
+            guard.transform.localPosition = this.transform.localPosition;
             return true;
         }
         return false;
