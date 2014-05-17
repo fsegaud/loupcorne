@@ -2,7 +2,7 @@
 <ArrayOfSkillEffectElement xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 
 	<SkillEffectElement Name="SkillEffectGood1" Type="Aoe" Prefab="SkillEffect/AoeHeal01">
-		<Tags>Peon</Tags>
+		<Tags>Peon,King</Tags>
 		<Damage>-1.5</Damage>
 		<Radius>3</Radius>
 		<Duration>1.5</Duration>
