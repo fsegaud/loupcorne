@@ -101,6 +101,7 @@ public class Guard : Entity
             _navAgent.SetDestination(_target.transform.position);
 			break;
 		case GuardStates.ATTACK:
+            _navAgent.Stop();
             animation.Play("hit");
 			_attackTimer += Time.deltaTime;
 			if(_attackTimer >= attackSpeed)
