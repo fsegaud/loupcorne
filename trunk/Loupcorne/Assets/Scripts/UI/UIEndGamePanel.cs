@@ -56,6 +56,23 @@ public class UIEndGamePanel : UIPanel
         GUI.Label(new Rect(Screen.width - 180f, Screen.height - 40f, 180f, 32f), "Loading...", "loading");
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            switch (this.initialState)
+            {
+                case State.Good:
+                    Application.LoadLevel("EndingBad");
+                    break;
+
+                case State.Evil:
+                    Application.LoadLevel("EndingGood");
+                    break;
+            }
+        }
+    }
+
     private abstract class Content
     {
         public static readonly string GoodText = "THE USURPER KING FLED THE CATLE\nTHE SURVIVAL OF MOST OF YOUR VILLAGERS MADE YOU A <color=#FFC000>LOVED KING</color>";
