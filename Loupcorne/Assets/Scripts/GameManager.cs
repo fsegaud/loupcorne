@@ -198,6 +198,7 @@ public class GameManager : Singleton<GameManager>
     private void GameOver()
     {
         Debug.Log("GAME OVER");
+        Application.LoadLevel("GameOver");
     }
 
     void OnDisable()
