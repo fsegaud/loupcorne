@@ -133,11 +133,11 @@ public class UIMainMenuPanel : UIPanel
             + "<color=#FFC000>Programming</color>\nPierre Maury\nFrançois Ségaud\n\n"
             + "<color=#FFC000>Art</color>\nBaptiste Doux\nOlivier Leroy\n\n"
             + "<color=#FFC000>Music & Sound Design</color>\nMarc-Antoine Archier\n\n"
-            + "<color=#FFC000>Resources</color>\ncgtextures.com\ngame-icons.net\nhttp://dafont.com";
+            + "<color=#FFC000>Resources</color>\ncgtextures.com\ngame-icons.net\ndafont.com";
 
         public static readonly string Manual = string.Empty
-            + "You're the fallen <color=#FFC000><b>king</b></color> of this land.\n\n"
-            + "Your goal is to reclaim your throne by killing all of the new <color=#FFC000><b>king's guard</b></color>.\n\n"
-            + "To do so you've been granted a sword and some spells. Some are <color=#FFC000>good</color>, other are <color=#FFC000>evil</color>, use them wisely.\n\n";
+            + "You are the fallen <color=#FFC000><b>king</b></color> of this land.\n\n"
+            + "Your goal is to reclaim your throne by killing the new <color=#FFC000><b>king's guard</b></color>.\n\n"
+            + "To do so you have been granted a sword and some spells. Some are <color=#FFC000><b>good</b></color>, others are <color=#FFC000><b>evil</b></color>, use them wisely.\n\n";
     }
 }
