@@ -2201,6 +2201,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _healthBarUpOffset: 3
   _health: 10
+  _healthBarTexture: {fileID: 2800000, guid: 2ec081e38ba22404bb9b8802e25debf1, type: 3}
+  _healthBarBgTexture: {fileID: 2800000, guid: d3bb059927f32914c862c74866f2cb07, type: 3}
 --- !u!54 &58266608
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -18699,7 +18701,7 @@ Camera:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 634396900}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 3
   m_BackGroundColor: {r: .192156866, g: .301960796, b: .474509805, a: .0196078438}
@@ -23276,6 +23278,32 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1264395022}
   m_GameObject: {fileID: 776473632}
   m_Mesh: {fileID: 4300000, guid: 750c05f8a53d8fd4fa31b1dda92d5e3c, type: 3}
+--- !u!1 &776770687
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 776770688}
+  m_Layer: 0
+  m_Name: __pref
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &776770688
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 776770687}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.36507702, y: 5.95640182, z: -2.64251041}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
 --- !u!1 &777214867
 GameObject:
   m_ObjectHideFlags: 0
@@ -62565,7 +62593,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2139765983
 Transform:
   m_ObjectHideFlags: 0

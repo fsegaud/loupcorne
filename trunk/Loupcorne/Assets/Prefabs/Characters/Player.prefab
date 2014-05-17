@@ -994,6 +994,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _healthBarUpOffset: 3
   _health: 10
+  _healthBarTexture: {fileID: 2800000, guid: 2ec081e38ba22404bb9b8802e25debf1, type: 3}
+  _healthBarBgTexture: {fileID: 2800000, guid: d3bb059927f32914c862c74866f2cb07, type: 3}
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -1019,8 +1021,8 @@ SkinnedMeshRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: b7b1700886b26244a91864c2c9390e40, type: 2}
-  - {fileID: 2100000, guid: b7b1700886b26244a91864c2c9390e40, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
