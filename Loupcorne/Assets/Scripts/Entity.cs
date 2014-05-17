@@ -5,6 +5,8 @@ public class Entity : SimObjectWrapper
 {
     [SerializeField] protected float _healthBarUpOffset;
     [SerializeField] protected float _health;
+    [SerializeField] private Texture _healthBarTexture;
+    [SerializeField] private Texture _healthBarBgTexture;
     
     protected float _maxHealth;
     protected bool isAlive;
@@ -35,7 +37,7 @@ public class Entity : SimObjectWrapper
     {
         _health = (float)this.GetPropertyValue(SimProperties.MaxHealth);
         this._maxHealth = this._health;
-        Debug.Log(this._health + "/" + this._maxHealth);
+        //Debug.Log(this._health + "/" + this._maxHealth);
 
         // Apply difficulty.
         if (this.DifficultyDescriptor != null)
@@ -91,6 +93,8 @@ public class Entity : SimObjectWrapper
     protected virtual void OnGUI()
     {
         Vector3 point = Camera.main.WorldToScreenPoint(this.transform.position + this.transform.up * _healthBarUpOffset);
-        GUI.Box(new Rect(point.x - 20f, Screen.height - point.y, 40f * Mathf.Clamp01(this._health / this._maxHealth), 10f), string.Empty);
+        //GUI.Box(new Rect(point.x - 20f, Screen.height - point.y, 40f * Mathf.Clamp01(this._health / this._maxHealth), 10f), string.Empty);
+        GUI.DrawTexture(new Rect(point.x - 21f, Screen.height - point.y, 42f, 10f), this._healthBarBgTexture);
+        GUI.DrawTexture(new Rect(point.x - 20f, Screen.height - point.y + 1, 40f * Mathf.Clamp01(this._health / this._maxHealth), 8f), this._healthBarTexture);
     }
 }

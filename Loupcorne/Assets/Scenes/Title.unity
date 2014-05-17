@@ -131,7 +131,7 @@ MonoBehaviour:
   skin: {fileID: 11400000, guid: 020b0bb9776aaea46b2451dfe38b6928, type: 2}
   titleTexture: {fileID: 2800000, guid: eea846bc7adad4147b683d99328463e4, type: 3}
   nextScene: MainMenu
-  timer: 2
+  timer: 1
 --- !u!4 &1379780018
 Transform:
   m_ObjectHideFlags: 0

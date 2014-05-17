@@ -17,6 +17,9 @@ public class UIMainMenuPanel : UIPanel
     [SerializeField]
     private Texture loadingTexture;
 
+    [SerializeField]
+    private Texture tutoTexture;
+
     protected override void Draw()
     {
         base.Draw();
@@ -99,12 +102,21 @@ public class UIMainMenuPanel : UIPanel
         {
             GUI.Box(new Rect(0f, 0f, 300f, 370f), string.Empty);
 
+            GUI.Label(new Rect(10f, 5f, 280f, 270f), Content.Manual, "manual");
+
             if (GUI.Button(new Rect(10f, 280f, 280f, 80f), "BACK"))
             {
                 this.state = State.Main;
             }
         }
         GUI.EndGroup();
+
+        float w = Screen.width - 376;
+        float h = w * 9f / 16f;
+        float x = 344f;
+        float y = (Screen.height - h) * .5f;
+
+        GUI.DrawTexture(new Rect(x, y, w, h), this.tutoTexture);
     }
 
     private void Draw_Loading()
@@ -122,5 +134,10 @@ public class UIMainMenuPanel : UIPanel
             + "<color=#FFC000>Art</color>\nBaptiste Doux\nOlivier Leroy\n\n"
             + "<color=#FFC000>Music & Sound Design</color>\nMarc-Antoine Archier\n\n"
             + "<color=#FFC000>Resources</color>\ncgtextures.com\ngame-icons.net\nhttp://dafont.com";
+
+        public static readonly string Manual = string.Empty
+            + "You're the fallen <color=#FFC000><b>king</b></color> of this land.\n\n"
+            + "Your goal is to reclaim your throne by killing all of the new <color=#FFC000><b>king's guard</b></color>.\n\n"
+            + "To do so you've been granted a sword and some spells. Some are <color=#FFC000>good</color>, other are <color=#FFC000>evil</color>, use them wisely.\n\n";
     }
 }

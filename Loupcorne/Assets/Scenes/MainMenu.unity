@@ -22243,6 +22243,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skin: {fileID: 11400000, guid: 6c1e86fd5db6b5e45ac495b34c05ec81, type: 2}
   loadingTexture: {fileID: 2800000, guid: 49a1af8ca2ffb514db5b1b85b80572af, type: 3}
+  tutoTexture: {fileID: 2800000, guid: 57b32f946d08f5043bb6189876a0c20d, type: 3}
 --- !u!1 &1738549418
 GameObject:
   m_ObjectHideFlags: 0

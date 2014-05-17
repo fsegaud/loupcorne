@@ -1353,6 +1353,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _healthBarUpOffset: 3
   _health: 5
+  _healthBarTexture: {fileID: 2800000, guid: 2ec081e38ba22404bb9b8802e25debf1, type: 3}
+  _healthBarBgTexture: {fileID: 2800000, guid: d3bb059927f32914c862c74866f2cb07, type: 3}
   viewDistance: 10
   attackSpeed: 1
 --- !u!135 &13500000
