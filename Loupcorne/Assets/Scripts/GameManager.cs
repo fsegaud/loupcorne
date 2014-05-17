@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class GameManager : Singleton<GameManager>
 {
     [SerializeField] private Transform playerSpawn;
-    [SerializeField] private Transform guardSpawnsParent;
+    //[SerializeField] private Transform guardSpawnsParent;
     private List<SpawnPoint> guardSpawns;
     [SerializeField] private int maxGuards; 
     [SerializeField] private int maxPeons;
@@ -18,7 +18,9 @@ public class GameManager : Singleton<GameManager>
 
     private UnitsManager _um;
 
-    private UITimerPanel uiTimer;
+    private UIObjectivePanel uiTimer;
+
+    private UnityEngine.Object guardSpawnsPrefab;
 
     public delegate void GameReadyEventHandler(GameManager sender);
     public event GameReadyEventHandler OnGameReady;
@@ -29,6 +31,7 @@ public class GameManager : Singleton<GameManager>
 
         maxGuards *= GameStats.difficulty;
         GameStats.nbPeon += maxPeons;
+        arenaSize *= GameStats.difficulty;
 
         CreateGuardSpawns();
 
@@ -45,7 +48,7 @@ public class GameManager : Singleton<GameManager>
         this.ApplyDifficulty(GameStats.difficulty);
 
         Transform ui = GameObject.FindGameObjectWithTag("GUI").transform;
-        uiTimer = ui.FindChild("TimerPanel").GetComponent<UITimerPanel>();
+		uiTimer = ui.FindChild("ObjectivePanel").GetComponent<UIObjectivePanel>();
         switch (GameStats.difficulty)
         {
             case 1:
@@ -89,10 +92,13 @@ public class GameManager : Singleton<GameManager>
 
     private void CreateGuardSpawns()
     {
+        string spawnsHolderPath = @"Game/GuardSpawns_" + GameStats.difficulty.ToString();
+        Transform spawnsHolder = (Instantiate(Resources.Load(spawnsHolderPath)) as GameObject).transform;
+
         guardSpawns = new List<SpawnPoint>();
-        for (int i = 0; i < guardSpawnsParent.childCount; i++)
+        for (int i = 0; i < spawnsHolder.childCount; i++)
         {
-            SpawnPoint sp = guardSpawnsParent.GetChild(i).GetComponent<SpawnPoint>();
+            SpawnPoint sp = spawnsHolder.GetChild(i).GetComponent<SpawnPoint>();
             guardSpawns.Add(sp);
         }
 
@@ -113,18 +119,23 @@ public class GameManager : Singleton<GameManager>
     {
         for (int i = 0; i < maxGuards; i++)
         {
-            Debug.Log("create guards");
+            //Debug.Log("create guards");
             GameObject goGuard = Instantiate(guardPrefab) as GameObject;
             _um.AddGuard(goGuard.GetComponent<Guard>());
             float eulerY = UnityEngine.Random.Range(0f, 359f);
             goGuard.transform.eulerAngles = new Vector3(goGuard.transform.eulerAngles.x, eulerY, goGuard.transform.eulerAngles.z);
-
+			goGuard.transform.parent = guardsParent;
+			Debug.Log("guard spawns = " + guardSpawns.Count);
             foreach (SpawnPoint sp in guardSpawns)
             {
                 if (sp.AddGuard(goGuard))
-                    break;
+				{
+					Debug.Log("Added to spawn point: " + sp.transform.position);
+					break;
+				}
+                    
             }
-            goGuard.transform.parent = guardsParent;
+            
         }
     }
 

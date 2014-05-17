@@ -692,7 +692,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 400090}
   - 33: {fileID: 3300002}
-  - 135: {fileID: 13500000}
   - 23: {fileID: 2300002}
   m_Layer: 11
   m_Name: minimap_icon
@@ -1357,18 +1356,6 @@ MonoBehaviour:
   _healthBarBgTexture: {fileID: 2800000, guid: d3bb059927f32914c862c74866f2cb07, type: 3}
   viewDistance: 10
   attackSpeed: 1
---- !u!135 &13500000
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100090}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: .5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1

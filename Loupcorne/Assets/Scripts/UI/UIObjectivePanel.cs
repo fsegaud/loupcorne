@@ -8,6 +8,8 @@ public class UIObjectivePanel : UIPanel
 
     public float x1, y1, x2, y2;
 
+	private string timeValue = "00:00";
+
     protected override void Draw()
     {
         base.Draw();
@@ -26,7 +28,7 @@ public class UIObjectivePanel : UIPanel
             GUI.Label(new Rect(64f + 48f, 8f + 4, 28f, 28f), string.Empty, "guard_icon");
 
             // Timer
-            GUI.Label(new Rect(0f, 64f, 209f, 0f), "00:00", "timer");
+			GUI.Label(new Rect(0f, 64f, 209f, 0f), timeValue, "timer");
         }
         GUI.EndGroup();
     }
@@ -53,4 +55,9 @@ public class UIObjectivePanel : UIPanel
         this.maxPeons = UnitsManager.Instance.peons.Count;
         this.maxGuards = UnitsManager.Instance.guards.Count;
     }
+
+	public void SetTimeValue(string timeValue)
+	{
+		this.timeValue = timeValue;
+	}
 }
