@@ -30,16 +30,6 @@ public class SkillEffectMissile : SkillEffect
             {
                 entity.Hit(this.ComputeDamage(entity));
                 success = true;
-
-                if (!string.IsNullOrEmpty(this.SkillEffectElement.Gfx))
-                {
-                    GameObject.Instantiate(Resources.Load(this.SkillEffectElement.Gfx), this.transform.position, this.transform.rotation);
-                }
-
-                if(!string.IsNullOrEmpty(this.SkillEffectElement.Sfx))
-                {
-                    GameObject.Instantiate(Resources.Load(this.SkillEffectElement.Sfx), this.transform.position, this.transform.rotation);
-                }
             }
         }
 
@@ -47,6 +37,16 @@ public class SkillEffectMissile : SkillEffect
         if((success && this.SkillEffectElement.DestroyOnHitSuccess)
             || (!success && this.SkillEffectElement.DestroyOnHitFailure))
         {
+            if (!string.IsNullOrEmpty(this.SkillEffectElement.Gfx))
+            {
+                GameObject.Instantiate(Resources.Load(this.SkillEffectElement.Gfx), this.transform.position, this.transform.rotation);
+            }
+
+            if (!string.IsNullOrEmpty(this.SkillEffectElement.Sfx))
+            {
+                GameObject.Instantiate(Resources.Load(this.SkillEffectElement.Sfx), this.transform.position, this.transform.rotation);
+            }
+
             GameObject.Destroy(this.gameObject);
         }
     }

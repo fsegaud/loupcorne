@@ -28,13 +28,18 @@ class SkillEffectBuff : SkillEffect
 
         if (!string.IsNullOrEmpty(this.SkillEffectElement.Gfx))
         {
-            GameObject.Instantiate(Resources.Load(this.SkillEffectElement.Gfx), this.transform.position, this.transform.rotation);
+            GameObject go = GameObject.Instantiate(Resources.Load(this.SkillEffectElement.Gfx), this.transform.position, this.transform.rotation) as GameObject;
+            go.transform.parent = this.unitManager.player.gameObject.transform;
         }
 
         if (!string.IsNullOrEmpty(this.SkillEffectElement.Sfx))
         {
             GameObject.Instantiate(Resources.Load(this.SkillEffectElement.Sfx), this.transform.position, this.transform.rotation);
         }
+
+        // Hook this to player.
+        this.transform.parent = this.unitManager.player.gameObject.transform;
+        this.transform.localPosition = Vector3.up * .1f;
     }
 
     void Update()
