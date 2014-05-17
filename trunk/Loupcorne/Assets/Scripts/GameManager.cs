@@ -166,6 +166,24 @@ public class GameManager : Singleton<GameManager>
         }
         else
             GameOver();
+
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            Guard[] guards = UnitsManager.Instance.guards.ToArray();
+            foreach (Guard g in guards)
+            {
+                g.Kill();
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            Peon[] peons = UnitsManager.Instance.peons.ToArray();
+            foreach (Peon g in peons)
+            {
+                g.Kill();
+            }
+        }
 	}
 
     private void ArenaCompleted()
