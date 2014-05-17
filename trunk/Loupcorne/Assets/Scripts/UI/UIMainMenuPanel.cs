@@ -24,6 +24,8 @@ public class UIMainMenuPanel : UIPanel
     {
         base.Draw();
 
+        GUI.Label(new Rect(10f, Screen.height - 30f, 150f, 20f), Version.ToString("<b>Version {0}.{1}</b> <color=#FFC000>{2}</color> <color=#808080>({3})</color>"), "version");
+
         switch (this.state)
         {
             case State.Main:
