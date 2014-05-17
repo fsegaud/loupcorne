@@ -52,13 +52,13 @@ public class GameManager : Singleton<GameManager>
         switch (GameStats.difficulty)
         {
             case 1:
-                GameStats.timer = 120;
+                GameStats.timer = 180;
                 break;
             case 2:
-                GameStats.timer = 90;
+                GameStats.timer = 180;
                 break;
             case 3:
-                GameStats.timer = 60;
+                GameStats.timer = 180;
                 break;
         }
 
@@ -216,6 +216,12 @@ public class GameManager : Singleton<GameManager>
     private void GameOver()
     {
         Debug.Log("GAME OVER");
+       StartCoroutine("WaitBeforeGameOver");
+    }
+
+    private IEnumerator WaitBeforeGameOver()
+    {
+        yield return new WaitForSeconds(4);
         Application.LoadLevel("GameOver");
     }
 
