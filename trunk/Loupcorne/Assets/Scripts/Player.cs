@@ -188,6 +188,26 @@ public class Player : Entity
             this.ActiveSkill = 0;
         }
 
+        for (int i = 0; i < 6; ++i)
+        {
+            if (Input.GetKey(KeyCode.Alpha1 + i))
+            {
+                //this.ActiveSkill = i;
+                
+                animation.Play("spell");
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit[] hits = Physics.RaycastAll(ray);
+                foreach (RaycastHit hit in hits)
+                {
+                    if (hit.collider.gameObject.CompareTag("Ground"))
+                    {
+                        Vector3 worldMousePos = new Vector3(hit.point.x, 1, hit.point.z);
+                        SkillManager.Instance.Skills[i].Cast(this, worldMousePos);
+                    }
+                }
+            }
+        }
+
         if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Space))
         {
             animation.Play("spell");

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Linq;
 
 public class Peon : Entity 
 {
@@ -26,6 +27,8 @@ public class Peon : Entity
         // Apply simulation object.
         this.SetSimObject(LoupCorne.Framework.Database.Instance.GetDatatable<LoupCorne.Framework.SimObject>().GetElement("Peon"));
         this.Refresh();
+
+        UnitsManager.GuardRemoved += OnGuardRemoved;
 
         base.Start();
 	}
@@ -64,7 +67,7 @@ public class Peon : Entity
 			break;
 		case PeonStates.ATTACKED:
             animation.Play("protect");
-            _navAgent.Stop();
+            _navAgent.SetDestination(transform.position);
 			break;
 		}
 	
@@ -80,17 +83,30 @@ public class Peon : Entity
 
 	void OnTriggerEnter(Collider other)
 	{
-		if(other.GetComponent<Guard>() != null)
-		{
+		if(other.GetComponent<Guard>() != null && _state != PeonStates.ATTACKED)
 			_state = PeonStates.ATTACKED;
-		}
 	}
 
     void OnTriggerExit(Collider other)
     {
         if(other.GetComponent<Guard>() != null)
         {
-            _state = PeonStates.IDLE;
+            if(other.GetComponent<Guard>()._target == this)
+                _state = PeonStates.IDLE;
+
+            if (!_um.guards.Any(g => g._target == this))
+                _state = PeonStates.IDLE;
         }
+    }
+
+    private void OnGuardRemoved(Guard g)
+    {
+        if (g._target == this)
+            _state = PeonStates.IDLE;
+    }
+
+    void OnDisable()
+    {
+        UnitsManager.GuardRemoved -= OnGuardRemoved;
     }
 }

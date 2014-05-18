@@ -7,6 +7,8 @@ public class ResetDifficulty : MonoBehaviour {
 	void Start () 
     {
         GameStats.difficulty = 1;
+        GameStats.nbPeonKilled = 0;
+        GameStats.nbPeon = 0;
 	
 	}
 	

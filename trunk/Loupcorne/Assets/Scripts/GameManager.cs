@@ -191,13 +191,13 @@ public class GameManager : Singleton<GameManager>
         if (GameStats.difficulty < 3)
         {
             Debug.Log("Arena " + GameStats.difficulty + " Completed !");
-            GameStats.score += GameStats.nbPeon - GameStats.nbPeonKilled;
+           // GameStats.score += GameStats.nbPeon - GameStats.nbPeonKilled;
             GameStats.difficulty++;
             Application.LoadLevel("3C");
         }
         else
         {
-            GameStats.score += GameStats.nbPeon - GameStats.nbPeonKilled;
+            GameStats.score = GameStats.nbPeon - GameStats.nbPeonKilled;
             Debug.Log("Game Completed !");
             Debug.Log("Score = " + GameStats.score);
             if (GameStats.score >= GameStats.nbPeon / 2)

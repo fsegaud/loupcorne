@@ -22,7 +22,7 @@ public class UIHeroPanel : UIPanel
 
             // Health bar.
             GUI.Label(new Rect(81f, 12f, 112 * playerHealthRatio, 24f), string.Empty, "healthbar");
-            GUI.Label(new Rect(81f, 12f, 112, 24f), string.Format("{0}/{1}", player.Health, player.MaxHealth), "healthbar-label");
+            GUI.Label(new Rect(81f, 12f, 112, 24f), string.Format("{0}/{1}", Mathf.RoundToInt(player.Health), player.MaxHealth), "healthbar-label");
 
             // States.
             float x = 81f;

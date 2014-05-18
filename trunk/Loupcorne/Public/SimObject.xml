@@ -9,7 +9,7 @@
 	  <SimProperty Name="CooldownReductionRatio" BaseValue="1" />
 	  <SimProperty Name="Alignement" BaseValue="0" />
 	  <SimProperty Name="DamageReductionRatio" BaseValue="1" />
-	  <SimProperty Name="AttackRange" BaseValue="1" />
+	  <SimProperty Name="AttackRange" BaseValue="1.5" />
 	  <SimProperty Name="AlignmentRewardOnDeath" BaseValue="0" />
 	</SimObject>
 
@@ -25,7 +25,7 @@
 	  <SimProperty Name="Speed" BaseValue="5" />
 	  <SimProperty Name="Attack" BaseValue="5" />
 	  <SimProperty Name="Defence" BaseValue="8" />
-	   <SimProperty Name="AttackRange" BaseValue="1" />
+	   <SimProperty Name="AttackRange" BaseValue="2" />
 	  <SimProperty Name="AlignmentRewardOnDeath" BaseValue="0" />
 	</SimObject>
 

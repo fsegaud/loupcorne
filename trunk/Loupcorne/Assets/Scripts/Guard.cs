@@ -11,11 +11,11 @@ public class Guard : Entity
 		CHASING,
 		ATTACK
 	} 
-	private GuardStates _state;
+	[SerializeField] private GuardStates _state;
 	private UnitsManager _um;
 	[SerializeField] private float viewDistance;
 	[SerializeField] private float attackSpeed;
-	private Entity _target;
+	public Entity _target;
 	private float _attackTimer;
 
     private NavMeshAgent _navAgent;
@@ -97,11 +97,11 @@ public class Guard : Entity
             }
 			break;
 		case GuardStates.CHASING:
-                animation.CrossFade("run");
+             animation.CrossFade("run");
             _navAgent.SetDestination(_target.transform.position);
 			break;
 		case GuardStates.ATTACK:
-            _navAgent.Stop();
+            _navAgent.SetDestination(transform.position);
             animation.Play("hit");
 			_attackTimer += Time.deltaTime;
 			if(_attackTimer >= attackSpeed)
@@ -120,14 +120,22 @@ public class Guard : Entity
 
 		if(triggeringEntity is Peon || triggeringEntity is Player)
 		{
-			_state = GuardStates.ATTACK;
+            if (_target == null)
+            {
+                _state = GuardStates.ATTACK;
+                _target = triggeringEntity;
+            }
+            else if(_target == triggeringEntity)
+            {
+                _state = GuardStates.ATTACK;
+            }
 		}
 	}
 
     void OnTriggerExit(Collider other)
     {
         Entity triggeringEntity = other.GetComponent<Entity>();
-        if (triggeringEntity is Peon || triggeringEntity is Player)
+        if (triggeringEntity == _target)
         {
             _state = GuardStates.CHASING;
         }
