@@ -655,6 +655,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 400086}
   - 111: {fileID: 11100000}
+  - 111: {fileID: 11100002}
   m_Layer: 0
   m_Name: PF_Villager_Good_01
   m_TagString: Untagged
@@ -1183,13 +1184,28 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100086}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.77327442, y: -1.89195156, z: 26.7886047}
+  m_LocalPosition: {x: .287251234, y: -1.89195156, z: 24.1572704}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400084}
   - {fileID: 400082}
   m_Father: {fileID: 0}
 --- !u!111 &11100000
+Animation:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100086}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 7b20232b34175154480e030117c653e9, type: 3}
+  m_Animations:
+  - {fileID: 7400000, guid: 7b20232b34175154480e030117c653e9, type: 3}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!111 &11100002
 Animation:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1216,7 +1232,7 @@ SkinnedMeshRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 9296b0d4dae446743995e097e01dbfee, type: 2}
+  - {fileID: 2100000, guid: b0865a5ff83cdca418c9f89944278d63, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
